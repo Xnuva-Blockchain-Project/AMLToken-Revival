@@ -43,6 +43,7 @@ Work on the `reconstruction` branch is evidence-led. The current records are:
 - [`docs/EVIDENCE_REGISTER.md`](docs/EVIDENCE_REGISTER.md) — provenance and evidence status for preserved artefacts;
 - [`docs/MINING_EVIDENCE.md`](docs/MINING_EVIDENCE.md) — mining RPC behaviour and what remains unverified;
 - [`docs/RUNTIME_NETWORK_EVIDENCE.md`](docs/RUNTIME_NETWORK_EVIDENCE.md) — original protocol, network and consensus-deployment runtime fingerprints;
+- [`docs/UPSTREAM_BASELINE.md`](docs/UPSTREAM_BASELINE.md) — evidence identifying the strongest known Bitcoin Core upstream baseline candidate;
 - [`docs/RECONSTRUCTION_POLICY.md`](docs/RECONSTRUCTION_POLICY.md) — holder-protection and consensus-continuity rules.
 
 Values that have not been established from surviving evidence are left unknown rather than guessed.
