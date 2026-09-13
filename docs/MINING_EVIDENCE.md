@@ -33,6 +33,16 @@ This establishes that the historical AMLToken software exposes Bitcoin-Core-styl
 
 This establishes that external mining software was expected to obtain candidate block templates from the AMLToken node and submit work using the standard Bitcoin-Core-derived mining RPC model.
 
+When `getblocktemplate` was invoked while the original client was deliberately isolated from all peers, it returned:
+
+```text
+ALMToken is not connected! (code -9)
+```
+
+The spelling above is preserved exactly as emitted by the original client. This result means the client refuses to provide a mining template while it considers itself disconnected. Therefore the genesis-only isolated session cannot yet reveal the historical next-block coinbase reward, target or candidate-block parameters through `getblocktemplate`.
+
+This connectivity requirement must not be bypassed by altering consensus code merely to obtain a template. A controlled test network can be used later once compatible reconstructed nodes exist.
+
 ## Built-in CPU generation
 
 `help setgenerate` returns:
