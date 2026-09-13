@@ -10,7 +10,7 @@ A revived implementation is not considered compatible merely because it uses the
 
 ## Runtime-verified identity
 
-The following values were obtained from the original 2018 `AMLToken-Qt v1.3.0` Windows client while it was run in an isolated, network-disabled environment.
+The following values were obtained directly from the original 2018 `AMLToken-Qt v1.3.0` Windows client while it was run in an isolated, network-disabled environment.
 
 | Property | Value | Status |
 | --- | --- | --- |
@@ -19,22 +19,33 @@ The following values were obtained from the original 2018 `AMLToken-Qt v1.3.0` W
 | Reported build | v1.3.0.0-ge278f86c5 (64-bit) | VERIFIED |
 | Mainnet genesis block hash | `00000000230d6b389555e80e4523a32343531448ddd15fbc29c0fdc11dbb1538` | VERIFIED |
 | Genesis height | `0` | VERIFIED |
-| Genesis date shown by client | 18 September 2017 | VERIFIED |
+| Genesis version | `1` (`00000001`) | VERIFIED |
+| Genesis timestamp (`nTime`) | `1505736000` | VERIFIED |
+| Genesis UTC time | 2017-09-18 12:00:00 UTC | VERIFIED / derived from runtime timestamp |
+| Genesis nonce (`nNonce`) | `676078011` (`0x284c21bb`) | VERIFIED |
+| Genesis difficulty bits (`nBits`) | `1d00ffff` | VERIFIED |
+| Genesis difficulty | `1` | VERIFIED |
+| Genesis merkle root | `86f66413faa11cb678541c8b635a42845cefe9951ed528fb20e0306be22500d2` | VERIFIED |
+| Genesis transaction ID | `86f66413faa11cb678541c8b635a42845cefe9951ed528fb20e0306be22500d2` | VERIFIED |
+| Genesis stripped size | `281` bytes | VERIFIED |
+| Genesis serialized size | `281` bytes | VERIFIED |
+| Genesis weight | `1124` | VERIFIED |
+| Genesis chainwork | `0000000000000000000000000000000000000000000000000000000100010001` | VERIFIED |
 
-A clean isolated datadir reported `getblockcount = 0`, and `getblockhash 0` returned the genesis hash above.
+A clean isolated datadir reported `getblockcount = 0`, and `getblockhash 0` returned the genesis hash above. `getblock <genesis-hash>` independently returned the runtime metadata recorded in this table.
+
+The equality of the genesis transaction ID and merkle root is expected for a block containing exactly one transaction and is directly reported by the original client.
 
 ## Values recovered from original binary analysis
 
-The following parameters were recovered independently from the original Linux AMLToken binary's mainnet chain-parameter constructor. They must still be checked against runtime block metadata and, where possible, surviving original source before being promoted to final consensus constants.
+The following parameters were recovered independently from the original Linux AMLToken binary's mainnet chain-parameter constructor. Runtime verification is still required where indicated.
 
 | Property | Value | Evidence state |
 | --- | --- | --- |
-| Genesis timestamp (`nTime`) | `1505736000` / `0x59bfb540` | EXTRACTED |
-| Genesis UTC time | 2017-09-18 12:00:00 UTC | DERIVED FROM `nTime` |
-| Genesis nonce (`nNonce`) | `676078011` / `0x284c21bb` | EXTRACTED |
-| Genesis difficulty bits (`nBits`) | `0x1d00ffff` | EXTRACTED |
-| Mainnet message start / magic | `0d 1c 81 52` | EXTRACTED |
+| Mainnet message start / magic | `0d 1c 81 52` | EXTRACTED — runtime/network confirmation still required |
 | Candidate default mainnet P2P port | `23247` / `0x5acf` | EXTRACTED — runtime confirmation still required |
+
+The original static extraction also produced `nTime = 0x59bfb540`, `nNonce = 0x284c21bb`, and `nBits = 0x1d00ffff`. Those three values are now independently confirmed by the running original client and have therefore been promoted to **VERIFIED** above.
 
 ## Original software fingerprints
 
@@ -57,10 +68,11 @@ The historical C++ AMLToken/ABTC chain documented here is distinct from the late
 Before reconstructed source is treated as an AMLToken-compatible node, it must at minimum:
 
 1. deterministically reproduce the exact mainnet genesis hash above;
-2. reproduce the original address/network encoding and message-start bytes;
-3. reproduce historical consensus rules for all known pre-revival heights;
-4. accept original serialized transactions and blocks without rewriting them;
-5. preserve existing private-key ownership and historical balances;
-6. avoid any new genesis, premine, manual balance allocation or synthetic migration ledger.
+2. reproduce the exact genesis transaction and merkle root;
+3. reproduce the original address/network encoding and message-start bytes;
+4. reproduce historical consensus rules for all known pre-revival heights;
+5. accept original serialized transactions and blocks without rewriting them;
+6. preserve existing private-key ownership and historical balances;
+7. avoid any new genesis, premine, manual balance allocation or synthetic migration ledger.
 
 Values marked **EXTRACTED** remain evidence to verify, not permission to guess missing consensus parameters.
