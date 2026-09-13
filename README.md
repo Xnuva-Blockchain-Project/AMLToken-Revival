@@ -34,6 +34,16 @@ The immediate objective is to reconstruct enough of the original AMLToken Core s
 
 From there, the project will attempt to locate or reconstruct surviving historical blockchain data, validate original transactions, and determine whether the original ledger can be brought back into service without creating a new chain.
 
+## Reconstruction records
+
+Work on the `reconstruction` branch is evidence-led. The current records are:
+
+- [`docs/CHAIN_IDENTITY.md`](docs/CHAIN_IDENTITY.md) — verified chain identity and parameters recovered from original software;
+- [`docs/EVIDENCE_REGISTER.md`](docs/EVIDENCE_REGISTER.md) — provenance and evidence status for preserved artefacts;
+- [`docs/RECONSTRUCTION_POLICY.md`](docs/RECONSTRUCTION_POLICY.md) — holder-protection and consensus-continuity rules.
+
+Values that have not been established from surviving evidence are left unknown rather than guessed.
+
 ## Holder safety
 
 Historical holders should **never publish or submit** wallet files, private keys, seed phrases, wallet passphrases, or private-key dumps.
