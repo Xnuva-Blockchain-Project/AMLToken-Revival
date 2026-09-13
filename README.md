@@ -39,8 +39,10 @@ From there, the project will attempt to locate or reconstruct surviving historic
 Work on the `reconstruction` branch is evidence-led. The current records are:
 
 - [`docs/CHAIN_IDENTITY.md`](docs/CHAIN_IDENTITY.md) — verified chain identity and parameters recovered from original software;
+- [`docs/GENESIS_REPRODUCTION.md`](docs/GENESIS_REPRODUCTION.md) — byte-level genesis reconstruction and deterministic hash reproduction;
 - [`docs/EVIDENCE_REGISTER.md`](docs/EVIDENCE_REGISTER.md) — provenance and evidence status for preserved artefacts;
 - [`docs/MINING_EVIDENCE.md`](docs/MINING_EVIDENCE.md) — mining RPC behaviour and what remains unverified;
+- [`docs/RUNTIME_NETWORK_EVIDENCE.md`](docs/RUNTIME_NETWORK_EVIDENCE.md) — original protocol, network and consensus-deployment runtime fingerprints;
 - [`docs/RECONSTRUCTION_POLICY.md`](docs/RECONSTRUCTION_POLICY.md) — holder-protection and consensus-continuity rules.
 
 Values that have not been established from surviving evidence are left unknown rather than guessed.
