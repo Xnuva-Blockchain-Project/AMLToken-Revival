@@ -77,11 +77,64 @@ which matches the original client's `getblockhash 0` and `getblock` results byte
 
 Therefore **AMLToken block identifiers / `CBlockHeader::GetHash()` are verified to use standard Bitcoin SHA-256d for the genesis header**.
 
-## PoW algorithm status
+## Original Proof-of-Work validation path
 
-The broader production Proof-of-Work validation algorithm remains formally **pending**, rather than being guessed. The verified SHA-256d block-header hash, Bitcoin-derived `getblocktemplate`/`submitblock` interfaces, difficulty-one genesis, and absence so far of a separate `GetPoWHash` or scrypt identifier are strong evidence for Bitcoin-style SHA-256d Proof of Work.
+A focused static audit of the preserved original Linux `AMLToken-Qt` binary identified these exported consensus functions:
 
-However, some historical altcoins used a standard SHA-256d block identifier while validating work with a separate PoW hash. Before revival mainnet mining is enabled, the proof-of-work validation path must therefore be independently identified from original source/binary logic or reproduced against surviving historical blocks.
+```text
+GetNextWorkRequired(CBlockIndex const*, CBlockHeader const*, Consensus::Params const&)
+CalculateNextWorkRequired(CBlockIndex const*, long, Consensus::Params const&)
+CheckProofOfWork(uint256, unsigned int, Consensus::Params const&)
+```
+
+The original binary also exposes `CBlockHeader::GetHash() const`, which dispatches through `SerializeHash<CBlockHeader>`. No separate `GetPoWHash`, scrypt, X11, or other alternate block-work hash path was found in the symbol audit.
+
+The focused disassembly evidence was stored locally as `amltoken-pow-focused.txt`; its SHA-256 is:
+
+```text
+1b66ff6b8286590c205c38dfe51182487846e196b91cad1b28a4667904b8fbf7
+```
+
+### Difficulty selection
+
+`GetNextWorkRequired` in the original binary:
+
+- converts `powLimit` to compact form;
+- computes the difficulty interval from `nPowTargetTimespan / nPowTargetSpacing`;
+- returns the prior block difficulty outside adjustment boundaries;
+- retains the Bitcoin-style optional minimum-difficulty test-chain rule;
+- walks back through prior minimum-difficulty blocks under that rule;
+- at an adjustment boundary, selects the first block of the interval and calls `CalculateNextWorkRequired`;
+- respects `fPowNoRetargeting`.
+
+With the independently recovered AMLToken mainnet parameters `nPowTargetTimespan = 600` seconds and `nPowTargetSpacing = 60` seconds, the mainnet difficulty-adjustment interval is **10 blocks**.
+
+### Retarget calculation
+
+`CalculateNextWorkRequired` in the original binary reproduces the standard Bitcoin-Core retarget formula:
+
+1. `actualTimespan = lastBlockTime - firstBlockTime`;
+2. clamp actual timespan to `[targetTimespan / 4, targetTimespan * 4]`;
+3. decode the previous compact target;
+4. multiply by the clamped actual timespan;
+5. divide by the target timespan;
+6. cap the result at `powLimit`;
+7. return the compact target.
+
+No alternate retarget formula was observed.
+
+### Proof validation
+
+`CheckProofOfWork` in the original binary reproduces the standard Bitcoin-Core checks:
+
+- decode `nBits` with compact-target negative/overflow flags;
+- reject negative, zero, overflowed, or above-`powLimit` targets;
+- convert the supplied 256-bit block hash to arithmetic form;
+- accept only when `hash <= target`.
+
+Combined with the independently verified `CBlockHeader::GetHash()` SHA-256d behaviour, this establishes the original AMLToken mainnet Proof-of-Work path as **Bitcoin-style SHA-256d Proof of Work with the standard Bitcoin-Core difficulty algorithm**.
+
+Accordingly, the reconstruction should leave upstream `pow.cpp` unchanged unless later surviving historical blocks provide contradictory evidence.
 
 ## Preservation requirement
 
