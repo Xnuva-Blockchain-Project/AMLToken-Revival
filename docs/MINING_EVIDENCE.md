@@ -53,11 +53,23 @@ help: unknown command: setgenerate
 
 Therefore AMLToken-Qt v1.3.0 does not expose the old wallet-integrated `setgenerate` CPU-mining RPC. Revival mining should not depend on adding such a facility merely for convenience.
 
+## Header hash verification
+
+The original client's runtime genesis metadata was serialized as a standard 80-byte Bitcoin-style block header and hashed with double SHA-256. The resulting displayed hash is exactly:
+
+```text
+00000000230d6b389555e80e4523a32343531448ddd15fbc29c0fdc11dbb1538
+```
+
+which matches the original client's `getblockhash 0` and `getblock` results byte-for-byte. The complete deterministic reproduction is recorded in [`GENESIS_REPRODUCTION.md`](GENESIS_REPRODUCTION.md).
+
+Therefore **AMLToken block identifiers / `CBlockHeader::GetHash()` are verified to use standard Bitcoin SHA-256d for the genesis header**.
+
 ## PoW algorithm status
 
-The precise Proof-of-Work hash algorithm is **not yet marked verified** in this project. The binary uses `CBlockHeader::GetHash()` and no `scrypt` or `GetPoWHash` identifier has yet been found in the recovered static evidence, which is consistent with the Bitcoin-Core-derived implementation but is not, by itself, sufficient proof that the production PoW is SHA-256d.
+The broader production Proof-of-Work validation algorithm remains formally **pending**, rather than being guessed. The verified SHA-256d block-header hash, Bitcoin-derived `getblocktemplate` interface, difficulty-one genesis, and absence so far of a separate `GetPoWHash` or scrypt identifier are strong evidence for Bitcoin-style SHA-256d Proof of Work.
 
-The algorithm must be established from original source, deterministic binary analysis, or an independently reproduced header/hash test before revival mining is enabled.
+However, some historical altcoins used a standard SHA-256d block identifier while validating work with a separate PoW hash. Before revival mainnet mining is enabled, the proof-of-work validation path must therefore be independently identified from original source/binary logic or reproduced against surviving historical blocks.
 
 ## Preservation requirement
 
