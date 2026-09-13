@@ -1,0 +1,24 @@
+# Local AMLToken recovery data
+wallet.dat
+wallets/
+blocks/
+chainstate/
+database/
+indexes/
+peers.dat
+banlist.dat
+mempool.dat
+*.log
+*.pid
+*.lock
+
+# Local recovery workspaces
+offline-wallet-lab/
+offline-wallet-run-*/
+recovery/
+
+# Editor / OS files
+.DS_Store
+*~
+*.swp
+*.swo
