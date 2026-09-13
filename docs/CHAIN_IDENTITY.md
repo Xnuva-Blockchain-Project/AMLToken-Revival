@@ -17,6 +17,10 @@ The following values were obtained directly from the original 2018 `AMLToken-Qt 
 | Currency / ticker | ABTC | VERIFIED |
 | Client | AMLToken-Qt v1.3.0 | VERIFIED |
 | Reported build | v1.3.0.0-ge278f86c5 (64-bit) | VERIFIED |
+| Runtime version | `1030000` | VERIFIED |
+| P2P protocol version | `70015` | VERIFIED |
+| Subversion string | `/Satoshi:1.3.0/` | VERIFIED |
+| Local services | `000000000000000d` | VERIFIED |
 | Mainnet genesis block hash | `00000000230d6b389555e80e4523a32343531448ddd15fbc29c0fdc11dbb1538` | VERIFIED |
 | Genesis height | `0` | VERIFIED |
 | Genesis version | `1` (`00000001`) | VERIFIED |
@@ -35,6 +39,20 @@ The following values were obtained directly from the original 2018 `AMLToken-Qt 
 A clean isolated datadir reported `getblockcount = 0`, and `getblockhash 0` returned the genesis hash above. `getblock <genesis-hash>` independently returned the runtime metadata recorded in this table.
 
 The equality of the genesis transaction ID and merkle root is expected for a block containing exactly one transaction and is directly reported by the original client.
+
+## Runtime consensus-deployment snapshot at height 0
+
+`getblockchaininfo` on the original client reported the following state while only genesis was present:
+
+| Deployment | Runtime state at height 0 |
+| --- | --- |
+| BIP34 | version 2; reject status `false` |
+| BIP66 | version 3; reject status `false` |
+| BIP65 | version 4; reject status `false` |
+| CSV | BIP9 status `defined`; startTime `1462060800`; timeout `1493596800`; since `0` |
+| SegWit | BIP9 status `defined`; startTime `1479168000`; timeout `1510704000`; since `0` |
+
+These values are a verified snapshot of the original client's state at height 0. They do **not** by themselves establish which deployments later activated on the historical AMLToken chain; that must be determined from original consensus parameters and/or surviving historical blocks.
 
 ## Values recovered from original binary analysis
 
