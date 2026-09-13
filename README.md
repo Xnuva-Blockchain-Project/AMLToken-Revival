@@ -34,6 +34,21 @@ The immediate objective is to reconstruct enough of the original AMLToken Core s
 
 From there, the project will attempt to locate or reconstruct surviving historical blockchain data, validate original transactions, and determine whether the original ledger can be brought back into service without creating a new chain.
 
+## Historical network-control finding
+
+Static analysis of the preserved original AMLToken-Qt v1.3.0 Linux client has established that the historical software contained a separate **authorized-peer table** and an active `PeerAllowed()` membership check used in the outbound connection path.
+
+The original mainnet constructor loaded both a normal 13-entry seed table and a separate 13-entry authorized table. The two tables contained essentially the same endpoint set. This created a dependency on a small operator-defined peer infrastructure for normal outbound connectivity.
+
+The revival does **not** reproduce that centralized peer-authorization requirement. This networking repair is documented separately from consensus reconstruction and does not authorize any change to genesis, historical transactions, balances or ownership.
+
+Full technical evidence:
+
+- [`docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md`](docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md) — recovered authorized-peer tables, `PeerAllowed()` disassembly and mainnet constructor mapping;
+- [`docs/NETWORK_REVIVAL_POLICY.md`](docs/NETWORK_REVIVAL_POLICY.md) — why the revival removes the historical peer gate while preserving the original ledger and consensus identity.
+
+The evidence establishes the mechanism and its effect on connectivity. It does not attempt to infer developer motive beyond what the preserved binary proves.
+
 ## Reconstruction records
 
 Work on the `reconstruction` branch is evidence-led. The current records are:
@@ -43,6 +58,8 @@ Work on the `reconstruction` branch is evidence-led. The current records are:
 - [`docs/EVIDENCE_REGISTER.md`](docs/EVIDENCE_REGISTER.md) — provenance and evidence status for preserved artefacts;
 - [`docs/MINING_EVIDENCE.md`](docs/MINING_EVIDENCE.md) — mining RPC behaviour and what remains unverified;
 - [`docs/RUNTIME_NETWORK_EVIDENCE.md`](docs/RUNTIME_NETWORK_EVIDENCE.md) — original protocol, network and consensus-deployment runtime fingerprints;
+- [`docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md`](docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md) — evidence of the historical authorized-peer access-control mechanism;
+- [`docs/NETWORK_REVIVAL_POLICY.md`](docs/NETWORK_REVIVAL_POLICY.md) — decentralized connectivity policy for the revival;
 - [`docs/UPSTREAM_BASELINE.md`](docs/UPSTREAM_BASELINE.md) — evidence identifying the strongest known Bitcoin Core upstream baseline candidate;
 - [`docs/RECONSTRUCTION_POLICY.md`](docs/RECONSTRUCTION_POLICY.md) — holder-protection and consensus-continuity rules.
 
