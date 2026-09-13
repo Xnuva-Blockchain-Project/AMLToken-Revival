@@ -56,14 +56,36 @@ These values are a verified snapshot of the original client's state at height 0.
 
 ## Values recovered from original binary analysis
 
-The following parameters were recovered independently from the original Linux AMLToken binary's mainnet chain-parameter constructor. Runtime verification is still required where indicated.
+The following mainnet values have now been recovered directly from the original Linux AMLToken binary's `CMainParams` constructor and adjacent read-only constant data.
 
 | Property | Value | Evidence state |
 | --- | --- | --- |
+| Subsidy-halving interval | `800000` | EXTRACTED |
+| BIP34 height | `227931` | EXTRACTED; same numeric height as upstream baseline |
+| BIP34 hash | zero / `0x00` | EXTRACTED |
+| BIP65 height | `388381` | EXTRACTED; same numeric height as upstream baseline |
+| BIP66 height | `363725` | EXTRACTED; same numeric height as upstream baseline |
+| PoW limit | `00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff` | EXTRACTED |
+| PoW target spacing | `60` seconds | EXTRACTED |
+| PoW target timespan | `600` seconds | EXTRACTED |
+| Allow minimum-difficulty blocks | `false` | EXTRACTED |
+| Disable retargeting | `false` | EXTRACTED |
+| BIP9 activation threshold | `1916` | EXTRACTED |
+| BIP9 confirmation window | `2016` | EXTRACTED |
+| Minimum chain work | zero / `0x00` | EXTRACTED |
+| Default assume-valid | zero / `0x00` | EXTRACTED |
 | Mainnet message start / magic | `0d 1c 81 52` | EXTRACTED — runtime/network confirmation still required |
-| Candidate default mainnet P2P port | `23247` / `0x5acf` | EXTRACTED — runtime confirmation still required |
+| Default mainnet P2P port | `23247` / `0x5acf` | EXTRACTED — runtime/network confirmation still required |
+| Prune-after height | `100000` | EXTRACTED |
+| P2PKH / `PUBKEY_ADDRESS` prefix | `0x41` / decimal `65` | EXTRACTED; independently consistent with recovered historical AMLToken address |
+| P2SH / `SCRIPT_ADDRESS` prefix | `0x05` | EXTRACTED |
+| WIF / `SECRET_KEY` prefix | `0xc1` / decimal `193` | EXTRACTED |
+| Extended private-key prefix | `04 88 ad e4` | EXTRACTED |
+| Extended public-key prefix | `04 88 b2 1e` | EXTRACTED |
 
-The original static extraction also produced `nTime = 0x59bfb540`, `nNonce = 0x284c21bb`, and `nBits = 0x1d00ffff`. Those three values are now independently confirmed by the running original client and have therefore been promoted to **VERIFIED** above.
+The original static extraction also produced `nTime = 0x59bfb540`, `nNonce = 0x284c21bb`, and `nBits = 0x1d00ffff`. Those three values are independently confirmed by the running original client and have therefore been promoted to **VERIFIED** above.
+
+The HD-key constants were recovered from the exact byte ranges used by the mainnet constructor: the constructor copies bytes `04 88 b2 1e` into the extended-public-key vector and `04 88 ad e4` into the extended-secret-key vector. They are therefore not inferred from Bitcoin defaults merely because the upstream baseline used the same values.
 
 ## Original software fingerprints
 
