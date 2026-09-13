@@ -31,7 +31,7 @@ This establishes that the historical AMLToken software exposes Bitcoin-Core-styl
 - `height`
 - `curtime`
 
-This establishes that external mining software was expected to obtain candidate block templates from the AMLToken node and submit work using the standard Bitcoin-Core-derived mining RPC model.
+This establishes that external mining software was expected to obtain candidate block templates from the AMLToken node using the standard Bitcoin-Core-derived mining RPC model.
 
 When `getblocktemplate` was invoked while the original client was deliberately isolated from all peers, it returned:
 
@@ -42,6 +42,18 @@ ALMToken is not connected! (code -9)
 The spelling above is preserved exactly as emitted by the original client. This result means the client refuses to provide a mining template while it considers itself disconnected. Therefore the genesis-only isolated session cannot yet reveal the historical next-block coinbase reward, target or candidate-block parameters through `getblocktemplate`.
 
 This connectivity requirement must not be bypassed by altering consensus code merely to obtain a template. A controlled test network can be used later once compatible reconstructed nodes exist.
+
+## Solved-block submission
+
+`help submitblock` is also present. The original client documents:
+
+```text
+submitblock "hexdata"  ( "dummy" )
+```
+
+and states that the RPC attempts to submit a new block to the network using the BIP 22 model. The second compatibility argument is ignored.
+
+Together, `getblocktemplate` and `submitblock` establish the expected external-miner workflow: obtain a template from the node, construct and solve a candidate block externally, then return the complete serialized block to the node for validation and acceptance.
 
 ## Built-in CPU generation
 
@@ -67,7 +79,7 @@ Therefore **AMLToken block identifiers / `CBlockHeader::GetHash()` are verified 
 
 ## PoW algorithm status
 
-The broader production Proof-of-Work validation algorithm remains formally **pending**, rather than being guessed. The verified SHA-256d block-header hash, Bitcoin-derived `getblocktemplate` interface, difficulty-one genesis, and absence so far of a separate `GetPoWHash` or scrypt identifier are strong evidence for Bitcoin-style SHA-256d Proof of Work.
+The broader production Proof-of-Work validation algorithm remains formally **pending**, rather than being guessed. The verified SHA-256d block-header hash, Bitcoin-derived `getblocktemplate`/`submitblock` interfaces, difficulty-one genesis, and absence so far of a separate `GetPoWHash` or scrypt identifier are strong evidence for Bitcoin-style SHA-256d Proof of Work.
 
 However, some historical altcoins used a standard SHA-256d block identifier while validating work with a separate PoW hash. Before revival mainnet mining is enabled, the proof-of-work validation path must therefore be independently identified from original source/binary logic or reproduced against surviving historical blocks.
 
