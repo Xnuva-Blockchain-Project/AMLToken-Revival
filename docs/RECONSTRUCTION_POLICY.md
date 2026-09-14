@@ -23,6 +23,24 @@ The project may:
 
 Any future modernisation is revival-era engineering of the recovered precursor chain. It must not be presented as restoration of unverified proprietary AML Bitcoin capabilities.
 
+## Future production-network policy
+
+If the historical AMLToken/ABTC precursor chain is eventually authenticated to its genuine historical tip and continued into production, future revival releases are intended to operate as **conventional decentralized peer-to-peer cryptocurrency software**.
+
+They will not claim, reproduce or incorporate the biometric identification, AML/KYC, anti-terrorism, theft-resistant, "privately regulated public blockchain", or other proprietary features formerly advertised for AML Bitcoin.
+
+The revival specification does not include:
+
+- a centralized transaction-approval authority;
+- mandatory identity verification or AML/KYC approval built into ordinary transaction validity;
+- an operator-controlled peer authorization system;
+- a privileged peer list that determines who may participate in ordinary network operation;
+- any claim that the former advertised AML Bitcoin proprietary capabilities have been recovered.
+
+The intended production network is one in which ordinary users can run compatible nodes, validate the chain and transact without requiring approval from a central operator or membership in a privileged peer set.
+
+This policy does not prohibit transparent revival-era engineering such as improved wallet security, modern networking, pruning, APIs, explorers, build-system maintenance or forward protocol/consensus upgrades. Any such change must be documented as **new revival-era functionality**, not presented as functionality inherited from or previously implemented by the former AML Bitcoin project.
+
 ## What this project will not do
 
 The project will not:
@@ -36,6 +54,7 @@ The project will not:
 - silently substitute the later AML Bitcoin / Skycoin-derived codebase for the original C++ AMLToken/ABTC precursor chain;
 - represent recovery of the precursor ledger as proof that the later advertised AML Bitcoin system was completed;
 - attribute biometric, AML/KYC, anti-terrorism, theft-resistant or other proprietary AML Bitcoin claims to the recovered chain without independent technical evidence;
+- reintroduce the historical operator-controlled `PeerAllowed()` model as an authority over ordinary participation;
 - market the reconstruction as a new investment product or token sale.
 
 ## Historical-holder protection
