@@ -46,6 +46,18 @@ It does **not** mean reconstructing, adopting or claiming the later advertised A
 
 Any future functionality added after the authenticated historical boundary must be documented as **revival-era functionality**, not presented as functionality proven to have existed historically.
 
+## Future production-release model
+
+If the authenticated historical AMLToken/ABTC precursor chain is eventually continued into production, the intended release model is a **conventional decentralized peer-to-peer cryptocurrency network**.
+
+Future revival releases will **not** claim, reproduce or incorporate the biometric identification, AML/KYC, anti-terrorism, theft-resistant, "privately regulated public blockchain", or other proprietary features formerly advertised for AML Bitcoin.
+
+No identity-verification system, centralized transaction-approval mechanism, operator authorization layer, privileged peer list, or equivalent former AML Bitcoin control feature forms part of the revival specification.
+
+The intended production network is one in which ordinary users can run compatible nodes, validate the blockchain and transact without requiring approval from a central operator or membership in a privileged peer set.
+
+This policy does not prohibit ordinary modern cryptocurrency engineering such as improved wallet security, updated networking, pruning, build-system maintenance, APIs, explorers, or transparent forward consensus upgrades. If such functionality is introduced, it must be documented as **new revival-era engineering** and must not be represented as recovered, inherited or previously implemented AML Bitcoin technology.
+
 ## Required wording discipline
 
 Preferred wording includes:
@@ -62,6 +74,7 @@ Avoid wording such as:
 - `the AML Bitcoin blockchain has been recovered`;
 - `we are reviving AML Bitcoin` without immediately qualifying that this means the historical AMLToken/ABTC precursor chain;
 - `the recovered chain includes AML/KYC, biometric or theft-resistant technology`;
+- `future releases will implement the advertised AML Bitcoin features`;
 - `independently reproduced` when referring only to machines operated by this project.
 
 Quotations from SEC, DOJ, historical marketing material or archived sources may of course use the original terminology, but the surrounding text should preserve the distinction.
@@ -84,4 +97,4 @@ See [`INDEPENDENT_REPRODUCTION.md`](INDEPENDENT_REPRODUCTION.md).
 
 ---
 
-**Project scope: preserve and, if justified by the evidence, continue the real historical AMLToken/ABTC precursor chain. Do not revive or inherit unverified AML Bitcoin marketing claims.**
+**Project scope: preserve and, if justified by the evidence, continue the real historical AMLToken/ABTC precursor chain as an open peer-to-peer network. Do not revive or inherit unverified AML Bitcoin marketing claims or proprietary control features.**
