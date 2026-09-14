@@ -8,6 +8,18 @@ This is a recovery of historical chain data. It is **not** a replacement chain, 
 
 Because the ticker **ABTC** is also used by unrelated modern projects, readers should also see [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md) for the distinction between the native historical AMLToken chain, unrelated contract tokens, current market claims and the legal history of the former AML Bitcoin project.
 
+## Scope of the recovered chain
+
+The chain documented here is the **historical AMLToken/ABTC precursor chain** represented by the surviving original software and recovered block data.
+
+It must not be conflated with the later system marketed as **AML Bitcoin** with biometric identification, AML/KYC, anti-terrorism, theft-resistant or other proprietary compliance features.
+
+The SEC's 2020 complaint states that purchasers would initially receive tradable ABTC tokens that did not have the advertised AML Bitcoin features, with a represented future one-for-one exchange into functional AML Bitcoin tokens once a new blockchain and tokens were ready. The SEC separately alleged that the touted AML Bitcoin capabilities did not exist and that development of AML Bitcoin and its blockchain remained in a very early stage.
+
+Accordingly, successful recovery of this historical ABTC ledger is evidence for the existence and state of the precursor chain. It is **not** evidence that the later advertised AML Bitcoin system was completed or possessed the claimed proprietary features.
+
+Primary legal/context sources and the full distinction are recorded in [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md).
+
 ## Validated snapshot identity
 
 ```text
@@ -117,10 +129,10 @@ Useful evidence includes non-private `blk*.dat` files, `blocks/` directories, bl
 
 For old-wallet backup, data-folder and connection instructions, see [`OLD_WALLET_CONNECTION_GUIDE.md`](OLD_WALLET_CONNECTION_GUIDE.md).
 
-For legal-history, ticker and chain-identity clarification, see [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md).
+For legal-history, ticker, precursor-chain and later-system clarification, see [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md).
 
 ## Preservation rule
 
 **Same genesis. Same historical ledger. Same ownership.**
 
-Recovered history is validated and preserved. It is not rewritten.
+Recovered history is validated and preserved. It is not rewritten, and it is not being used to revive unverified marketing claims about the later AML Bitcoin system.
