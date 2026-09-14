@@ -10,6 +10,18 @@ Before changing anything, **close AMLToken-Qt completely and make a backup of th
 
 The recovery nodes currently serve authenticated historical AMLToken blockchain data through block **175168**. If your old installation contains genuine later blockchain data, it may help recover more of the original AMLToken history.
 
+## Q: I found an ABTC token or contract online. Is that the same thing?
+
+**Not necessarily.** The ticker **ABTC** has been used by unrelated projects.
+
+The recovery project described here concerns the **original native AMLToken/ABTC blockchain**, not an ERC-20 or BEP-20 token identified by a modern contract address.
+
+Do not import an unrelated ABTC contract into a wallet or use it to judge the balance of your old AMLToken wallet.
+
+For the legal history, ticker confusion and technical identity of the recovered chain, see:
+
+**[AML Bitcoin, AMLToken and ABTC — Identity and Historical Context](ABTC_IDENTITY_AND_CONTEXT.md)**
+
 ## Q: Where is my AMLToken data folder?
 
 The normal locations are:
@@ -137,6 +149,8 @@ Both are walletless and non-mining archival/discovery nodes. They currently serv
 Height 175168 is the latest authenticated snapshot currently recovered. It is **not being claimed as the final historical AMLToken network tip**.
 
 Any later blocks recovered from an old holder must still be preserved and independently validated before they are accepted as authentic historical continuation.
+
+For a fuller explanation of what AMLToken Revival is recovering — and what unrelated modern ABTC tokens are not part of this chain — see [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md).
 
 ---
 
