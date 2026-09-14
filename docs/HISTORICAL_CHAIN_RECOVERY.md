@@ -2,7 +2,7 @@
 
 > Status: validated 14 September 2026
 
-The AMLToken Revival project has recovered an authenticated historical AMLToken/ABTC blockchain snapshot and independently validated it from the original mainnet genesis through block **175168**.
+The AMLToken Revival project has recovered an authenticated historical AMLToken/ABTC blockchain snapshot and validated it from the original mainnet genesis through block **175168**.
 
 This is a recovery of historical chain data. It is **not** a replacement chain, a new genesis, a balance recreation, or a synthetic migration.
 
@@ -14,6 +14,7 @@ Because the ticker **ABTC** is also used by unrelated modern projects, readers s
 height: 175168
 bestblockhash: 000000008be329b7f5186e61c86367ece62db781374cc7c4fee46ba296b40025
 genesis: 00000000230d6b389555e80e4523a32343531448ddd15fbc29c0fdc11dbb1538
+chainwork: 00000000000000000000000000000000000000000000000000048f2b9dfa1d51
 ```
 
 The preserved historical raw block file used for validation has SHA256:
@@ -37,9 +38,9 @@ Recovered rules include:
 
 After those evidence-derived rules were restored, a fresh reindex accepted the recovered chain from genesis through height 175168 without consensus rejection.
 
-## Independent validation
+## Multi-host project validation
 
-The complete snapshot was independently reindexed on **three separate machines** using the same clean reconstruction build:
+The complete snapshot was freshly reindexed on **three separate project-controlled machines** using the same clean reconstruction build:
 
 - the reconstruction/development host;
 - the T620 archival node host;
@@ -51,9 +52,25 @@ All three validations independently reproduced:
 blocks:  175168
 headers: 175168
 bestblockhash: 000000008be329b7f5186e61c86367ece62db781374cc7c4fee46ba296b40025
+chainwork: 00000000000000000000000000000000000000000000000000048f2b9dfa1d51
 ```
 
 The historical raw block file remained byte-for-byte unchanged during validation.
+
+These runs are strong cross-machine validation, but all three machines were operated by the project. They are therefore **not being represented as independent third-party reproduction**.
+
+## Independent reproduction status
+
+The project now has an explicit public reproducibility standard: **do not trust our result; reproduce it**.
+
+A complete outsider replay from GitHub alone is not yet possible because two artefacts still need to be published in durable public form:
+
+- the exact clean reconstruction source tree corresponding to commit `8b821d120b6331cb9ac83c764863e032f567b776`;
+- the preserved public historical `blk00000.dat` with SHA-256 `77b005775f3d87429571a52b491aeadd0787b3350b3b96249fb1a169964cbf03`.
+
+The expected outputs, verifier procedure and reporting standard are documented in [`INDEPENDENT_REPRODUCTION.md`](INDEPENDENT_REPRODUCTION.md). Completion of the public package and the first unaffiliated reproduction are tracked in [GitHub Issue #3](https://github.com/Xnuva-Blockchain-Project/AMLToken-Revival/issues/3).
+
+The project will not claim independent third-party reproduction until an unaffiliated reviewer has completed the public procedure on their own system.
 
 ## Public archival/discovery nodes
 
