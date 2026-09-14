@@ -42,6 +42,14 @@ The legal history, precursor-chain distinction, ticker confusion and technical c
 
 Repository-wide wording and terminology are governed by **[Scope and Terminology](docs/SCOPE_AND_TERMINOLOGY.md)**.
 
+### Future release model
+
+If the authentic historical AMLToken/ABTC precursor chain is eventually continued into production, future revival releases are intended to be **conventional decentralized peer-to-peer cryptocurrency software**.
+
+They will not claim, reproduce or incorporate the biometric identification, AML/KYC, anti-terrorism, theft-resistant, "privately regulated public blockchain", or other proprietary features formerly advertised for AML Bitcoin. Ordinary users should be able to run compatible nodes, validate the chain and transact without approval from a central operator or membership in a privileged peer list.
+
+Any future wallet, networking, explorer, protocol, security or consensus improvements will be documented as **new revival-era engineering** and will not be represented as recovered or inherited AML Bitcoin technology.
+
 ## Validated historical snapshot
 
 Current authenticated chain state:
