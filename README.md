@@ -70,6 +70,14 @@ The two public nodes are operated independently. Later peer-supplied data is can
 
 See [`docs/PUBLIC_DISCOVERY_NODE.md`](docs/PUBLIC_DISCOVERY_NODE.md) for current node status, connection guidance and safety notes.
 
+### I still have an old AMLToken wallet — what should I do?
+
+If you are an old AMLToken/ABTC holder and do not know how to find the wallet data folder or configure a connection, use the simple holder guide:
+
+**[Old AMLToken / ABTC Wallet — Simple Connection Guide](docs/OLD_WALLET_CONNECTION_GUIDE.md)**
+
+It covers Windows, Linux and macOS, explains how to back up the old data before changing anything, and shows how to add both recovery nodes. It also explains what private wallet information must never be uploaded or shared.
+
 ## What has been recovered
 
 Evidence-led reconstruction has established:
@@ -150,6 +158,7 @@ Public addresses, transaction IDs, block hashes and non-private blockchain files
 
 The public evidence set currently includes:
 
+- [`docs/OLD_WALLET_CONNECTION_GUIDE.md`](docs/OLD_WALLET_CONNECTION_GUIDE.md) — simple Windows/Linux/macOS instructions for old wallet holders who want to connect safely to the recovery nodes;
 - [`docs/CHAIN_IDENTITY.md`](docs/CHAIN_IDENTITY.md) — recovered chain identity and mainnet parameters;
 - [`docs/GENESIS_REPRODUCTION.md`](docs/GENESIS_REPRODUCTION.md) — deterministic reproduction of the original genesis;
 - [`docs/HISTORICAL_CHAIN_RECOVERY.md`](docs/HISTORICAL_CHAIN_RECOVERY.md) — recovered snapshot identity, consensus reconstruction and independent validation;
@@ -186,7 +195,7 @@ The current inherited Bitcoin testnet configuration is **not** treated as histor
 
 The most useful contribution now is evidence that may extend or independently corroborate the recovered chain: later blockchain data, archived public source material, old installation packages, historical node information, block explorers, transaction records or verifiable technical documentation.
 
-Please use [GitHub Issue #2](https://github.com/Xnuva-Blockchain-Project/AMLToken-Revival/issues/2) for non-private historical-chain evidence or leads. **Do not attach wallet files or private keys.**
+If you still have an old wallet, start with the [simple connection guide](docs/OLD_WALLET_CONNECTION_GUIDE.md). Please use [GitHub Issue #2](https://github.com/Xnuva-Blockchain-Project/AMLToken-Revival/issues/2) for non-private historical-chain evidence or leads. **Do not attach wallet files or private keys.**
 
 ## Independence
 
