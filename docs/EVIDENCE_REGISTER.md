@@ -130,6 +130,27 @@ The calls show authorization affecting connection progression, retention/evictio
 
 See [`HISTORICAL_NETWORK_CONTROL_EVIDENCE.md`](HISTORICAL_NETWORK_CONTROL_EVIDENCE.md).
 
+## E-012 — Decentralized discovery baseline
+
+A read-only audit of the reconstructed AMLToken source confirmed the current mainnet discovery state:
+
+- default P2P port `23247`;
+- no `PeerAllowed` symbol in reconstructed source;
+- no `pnSeed6_authorized` symbol in reconstructed source;
+- mainnet `vSeeds` explicitly cleared;
+- mainnet `vFixedSeeds` explicitly cleared;
+- ordinary manual peer support remains inherited through the standard peer-to-peer networking path, including `-addnode`/`addnode` support.
+
+Evidence:
+
+- `amlcore-discovery-baseline-20260914_122106.txt` — SHA-256 `b4957187a8132bb0a2d82bc2b5d45df2081ebc877a07a82ef251071a885284e3`
+
+State: **VERIFIED RECONSTRUCTION BASELINE**
+
+The empty mainnet seed lists are intentional while historical chain recovery remains unresolved. Future seed infrastructure must be documented as revival discovery infrastructure and must not recreate peer authorization or special consensus/network privileges.
+
+See [`NETWORK_REVIVAL_POLICY.md`](NETWORK_REVIVAL_POLICY.md).
+
 ## Current evidence gap
 
 The principal unresolved item is surviving post-genesis ABTC blockchain data. A complete historical block sequence has not yet been recovered. Until it is, wallet-local transaction records must not be represented as independently chain-confirmed balances.
