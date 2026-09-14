@@ -1,20 +1,21 @@
-# Public Historical-Chain Archival/Discovery Node
+# Public Historical-Chain Archival/Discovery Nodes
 
 > Status: active as of 14 September 2026
 
-A public AMLToken/ABTC archival and recovery node is available at:
+Two public AMLToken/ABTC archival and recovery nodes are now available on separate networks:
 
 ```text
-81.130.208.151:23247
+Primary (T620):        81.130.208.151:23247
+Secondary (Contabo):  84.247.164.62:23247
 ```
 
 ## Purpose
 
-This node serves the latest authenticated historical AMLToken/ABTC snapshot currently recovered and remains available to compatible historical nodes that may possess later chain data.
+These nodes serve the latest authenticated historical AMLToken/ABTC snapshot currently recovered and remain available to compatible historical nodes that may possess later chain data.
 
-It is **not** a replacement production chain, a new token launch, or a mining endpoint.
+They are **not** replacement production chains, new token launches, or mining endpoints.
 
-The node is deliberately operated:
+Both nodes are deliberately operated:
 
 - without a wallet;
 - without mining;
@@ -38,29 +39,32 @@ The raw historical block file used to reconstruct and validate this snapshot has
 77b005775f3d87429571a52b491aeadd0787b3350b3b96249fb1a169964cbf03
 ```
 
-Fresh full reindexes on two separate machines independently reproduced the same height, tip and genesis without consensus rejection.
+Fresh full reindexes on **three separate machines** independently reproduced the same height, tip and genesis without consensus rejection.
 
 Block **175168 is the latest authenticated snapshot currently recovered**. It is **not** being claimed as the final historical AMLToken network tip.
 
 ## Connecting a surviving historical node
 
-If you operate a surviving AMLToken node containing historical chain data, especially data later than height 175168, you may point it at the recovery endpoint using an ordinary addnode entry:
+If you operate a surviving AMLToken node containing historical chain data, especially data later than height 175168, you may point it at either recovery endpoint using ordinary addnode entries:
 
 ```text
 addnode=81.130.208.151:23247
+addnode=84.247.164.62:23247
 ```
 
-The public service accepts compatible inbound P2P connections. It is not configured to actively roam for arbitrary peers.
+The public services accept compatible inbound P2P connections. They are not configured to actively roam for arbitrary peers.
 
 Please preserve your existing data directory before making changes. Work from a copy where possible.
 
 Any later headers or blocks supplied by a peer must still pass normal chain-continuity and consensus validation before they can be treated as authenticated historical ledger data.
 
-## Archival separation
+## Redundancy and independence
 
-The public node runs from a working copy of the validated chain state.
+The primary T620 node and secondary Contabo node operate on separate networks.
 
-A separate canonical snapshot of the validated height-175168 baseline is preserved independently. This keeps later P2P activity separate from the archival evidence used to establish the recovered historical baseline.
+Each runs from a working copy of the validated height-175168 chain state. The project also retains separate canonical snapshots so later P2P activity cannot alter the archival evidence used to establish the recovered historical baseline.
+
+The nodes are deliberately not treated as authorities for one another. Candidate continuation data received by either endpoint remains evidence to be preserved and independently validated before it is accepted as authenticated history.
 
 ## Wallet and private-key safety
 
@@ -87,9 +91,12 @@ Useful non-private material includes:
 
 ## Reachability verification
 
-The endpoint was externally tested from an independent Internet host after deployment of the validated snapshot on 14 September 2026. TCP connections to `81.130.208.151:23247` were accepted successfully.
+Both endpoints were externally tested after deployment on 14 September 2026:
 
-The permanent node is configured to start automatically and remain available for historical-peer discovery and archival access.
+- `81.130.208.151:23247` accepted a connection from the Contabo network;
+- `84.247.164.62:23247` accepted a connection from the T620 network.
+
+Both services are configured to start automatically and remain available for historical-peer discovery and archival access.
 
 ## Recovery policy
 
@@ -108,4 +115,4 @@ See also:
 
 ---
 
-**Validated history is being preserved. Later history remains open to evidence.**
+**Validated history is being preserved redundantly. Later history remains open to evidence.**
