@@ -6,6 +6,8 @@ The AMLToken Revival project has recovered an authenticated historical AMLToken/
 
 This is a recovery of historical chain data. It is **not** a replacement chain, a new genesis, a balance recreation, or a synthetic migration.
 
+Because the ticker **ABTC** is also used by unrelated modern projects, readers should also see [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md) for the distinction between the native historical AMLToken chain, unrelated contract tokens, current market claims and the legal history of the former AML Bitcoin project.
+
 ## Validated snapshot identity
 
 ```text
@@ -97,6 +99,8 @@ The recovery project does not need private wallet material. Do **not** publish o
 Useful evidence includes non-private `blk*.dat` files, `blocks/` directories, block-index data, block height/hash pairs, historical public binaries, old source archives, explorer exports and archived node information.
 
 For old-wallet backup, data-folder and connection instructions, see [`OLD_WALLET_CONNECTION_GUIDE.md`](OLD_WALLET_CONNECTION_GUIDE.md).
+
+For legal-history, ticker and chain-identity clarification, see [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md).
 
 ## Preservation rule
 
