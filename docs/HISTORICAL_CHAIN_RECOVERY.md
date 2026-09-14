@@ -75,6 +75,8 @@ Each public node uses a working copy. Separate canonical validated snapshots are
 
 The public nodes are independent recovery endpoints rather than authorities for one another. Later data received by either node remains candidate continuation evidence until separately preserved and validated.
 
+Old wallet holders who need non-technical connection instructions should use the **[Old AMLToken / ABTC Wallet — Simple Connection Guide](OLD_WALLET_CONNECTION_GUIDE.md)** before changing anything in their historical installation.
+
 ## Important boundary
 
 Block **175168 is the latest authenticated snapshot currently recovered**. It is **not** being claimed as the final historical AMLToken network tip.
@@ -93,6 +95,8 @@ The recovery project does not need private wallet material. Do **not** publish o
 - `dumpprivkey` output.
 
 Useful evidence includes non-private `blk*.dat` files, `blocks/` directories, block-index data, block height/hash pairs, historical public binaries, old source archives, explorer exports and archived node information.
+
+For old-wallet backup, data-folder and connection instructions, see [`OLD_WALLET_CONNECTION_GUIDE.md`](OLD_WALLET_CONNECTION_GUIDE.md).
 
 ## Preservation rule
 
