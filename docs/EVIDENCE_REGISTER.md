@@ -93,8 +93,6 @@ Disassembly of the preserved original Linux executable shows:
 - `PeerAllowed(CAddress const&, CChainParams const&)` adding `0x260` to the supplied `CChainParams` pointer, converting that vector and performing a membership search;
 - `CConnman::OpenNetworkConnection(...)` consulting `PeerAllowed()` before continuing through the normal outbound connection path.
 
-Additional `PeerAllowed()` call sites exist in peer-eviction and message-processing logic.
-
 State: **VERIFIED ACCESS-CONTROL MECHANISM**
 
 This evidence establishes a historical outbound peer-authorization gate. It does not, by itself, establish developer motive or prove a direct authorization check at every inbound TCP accept path.
@@ -108,6 +106,29 @@ Two reconstructed AMLToken nodes were run inside an isolated Linux network names
 - State: **VERIFIED CLOSED-NETWORK REVIVAL TEST**
 
 See [`NETWORK_REVIVAL_POLICY.md`](NETWORK_REVIVAL_POLICY.md).
+
+## E-011 — Complete direct `PeerAllowed()` call-site classification
+
+A complete static sweep of the preserved original Linux executable identified exactly five direct calls to `PeerAllowed()`.
+
+DWARF information resolves them to:
+
+- `0x1dcb12` — `CConnman::OpenNetworkConnection(...)`, `src/net.cpp:1982` — outbound connection access control;
+- `0x1e082a` — `CConnman::AttemptToEvictConnection()`, `src/net.cpp:963` — peer-eviction protection/privilege;
+- `0x20d043` — `ProcessMessage(...)`, `src/net_processing.cpp:1461` — address-message handling;
+- `0x2113c4` — `ProcessMessage(...)`, `src/net_processing.cpp:2393` — block-message handling;
+- `0x212b5e` — `ProcessMessage(...)`, `src/net_processing.cpp:1956` — compact-block handling.
+
+Evidence reports:
+
+- `amltoken-peerallowed-all-call-sites-20260913_210817.txt` — SHA-256 `e09b05f97e6b480cc98de8ad22a74dc62fa8594718beeda9c4ab6356e2f9371a`
+- `amltoken-peerallowed-classification-20260914_120152.txt` — SHA-256 `08f0cf425471d118c7440b21f84ccd03e7e3411668e3a217538873ce6149e219`
+
+State: **VERIFIED COMPLETE DIRECT CALL-SITE MAP**
+
+The calls show authorization affecting connection progression, retention/eviction and three network message-processing regions. They do not establish a consensus bypass, and no such bypass is claimed.
+
+See [`HISTORICAL_NETWORK_CONTROL_EVIDENCE.md`](HISTORICAL_NETWORK_CONTROL_EVIDENCE.md).
 
 ## Current evidence gap
 
