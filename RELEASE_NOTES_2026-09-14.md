@@ -1,7 +1,7 @@
 # AMLToken Revival — Public Technical Preview
 
 **Release date:** 14 September 2026  
-**Updated:** 14 September 2026 following historical-chain recovery, redundant public-node deployment and publication of the independent-reproduction framework
+**Updated:** 14 September 2026 following historical-chain recovery, redundant public-node deployment, publication of the independent-reproduction framework, and clarification of the ABTC precursor-chain scope
 
 ## What this release is
 
@@ -10,6 +10,18 @@ This is the first public technical/evidence preview of the independent AMLToken 
 The purpose of this release is to make the reconstruction work visible, document what the preserved original software proves, preserve recovered historical chain evidence, and attract holders/researchers who may still possess later AMLToken blockchain data.
 
 This is **not** a live replacement-chain launch, not a new token launch, and not a balance-migration event.
+
+## Historical scope clarification
+
+The chain recovered by this project is the **historical AMLToken/ABTC precursor chain** represented by surviving software and block data.
+
+It must not be conflated with the later system marketed as **AML Bitcoin** with biometric identification, AML/KYC, anti-terrorism, theft-resistant or other proprietary compliance features.
+
+The SEC's 2020 complaint states that purchasers would initially receive tradable ABTC tokens that did not have the advertised AML Bitcoin features and were told those tokens could later be exchanged one-for-one for functional AML Bitcoin tokens once a new blockchain and tokens were ready. The SEC separately alleged that the touted AML Bitcoin capabilities did not exist and that development of AML Bitcoin and its blockchain remained in a very early stage.
+
+Recovery of the historical ABTC ledger therefore does **not** establish that the later advertised AML Bitcoin system was completed or possessed the claimed proprietary features. Those claims are outside the recovered technical evidence and are not being revived or adopted by this project.
+
+See `docs/ABTC_IDENTITY_AND_CONTEXT.md` for the primary-source links and full distinction.
 
 ## Verified at this checkpoint
 
@@ -111,7 +123,8 @@ The project will not:
 - rewrite transactions;
 - treat a longer peer-supplied continuation as authentic without independent validation;
 - present reconstructed or synthetic ledger data as original history;
-- claim independent third-party reproduction before an unaffiliated reviewer has actually reproduced the public result.
+- claim independent third-party reproduction before an unaffiliated reviewer has actually reproduced the public result;
+- present recovery of the ABTC precursor chain as proof that the later advertised proprietary AML Bitcoin technology was completed.
 
 ## Call for later historical data
 
@@ -134,4 +147,4 @@ Potentially useful non-private material includes:
 
 **Same genesis. Same historical ledger. Same ownership.**
 
-The goal is recovery and preservation, not replacement.
+The goal is recovery and preservation, not replacement or revival of unverified marketing claims.
