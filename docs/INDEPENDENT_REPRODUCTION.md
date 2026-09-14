@@ -2,23 +2,25 @@
 
 > Status: reproduction framework published 14 September 2026. Full third-party end-to-end replay is **not yet complete** because two required public artefacts still have to be published.
 
+This reproduction challenge concerns the historical native **AMLToken/ABTC precursor chain** recovered from surviving software and block data. Reproducing this chain would not establish that the later advertised AML Bitcoin system or its proprietary biometric/AML/KYC features were completed. See [`SCOPE_AND_TERMINOLOGY.md`](SCOPE_AND_TERMINOLOGY.md) and [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md).
+
 ## Do not trust our result. Reproduce it.
 
-The strongest test of the AMLToken recovery is whether an independent person can start from the published source and public historical block data, build the node themselves, reindex from an empty data directory, and obtain the same chain state without trusting project-operated binaries or machines.
+The strongest test of the AMLToken/ABTC precursor-chain recovery is whether an independent person can start from the published source and public historical block data, build the node themselves, reindex from an empty data directory, and obtain the same chain state without trusting project-operated binaries or machines.
 
 That is the standard this project intends to meet.
 
 ## What has already been reproduced
 
-The authenticated historical snapshot has been freshly reindexed on **three separate machines**:
+The authenticated historical snapshot has been freshly reindexed on **three separate project-controlled machines**:
 
 - the reconstruction/development host;
 - the T620 archival-node host;
 - the Contabo secondary archival-node host.
 
-All three runs used the same clean reconstruction codebase and the same preserved historical raw block file. Each independently reached the same mainnet state without consensus rejection.
+All three runs used the same clean reconstruction codebase and the same preserved historical raw block file. Each reached the same mainnet state without consensus rejection.
 
-These are valuable independent executions, but all three machines were operated by the project. They therefore **do not count as independent third-party replication**.
+These are valuable cross-machine executions, but all three machines were operated by the project. They therefore **do not count as independent third-party replication**.
 
 ## Expected result
 
@@ -130,11 +132,13 @@ The purpose is not to obtain agreement by assertion. It is to make disagreement 
 
 A successful replay would strongly corroborate that:
 
-- the published reconstruction accepts the recovered block history under the recovered consensus rules;
+- the published reconstruction accepts the recovered AMLToken/ABTC precursor-chain history under the recovered consensus rules;
 - the raw historical block file deterministically leads to the published height, genesis, best-block hash and chainwork;
 - the result does not depend on hidden project chainstate or database files.
 
 It would **not**, by itself, prove that height 175168 was the final historical AMLToken network tip. Later genuine historical chain data may still exist and remains a separate recovery question.
+
+It would also **not** prove that the later advertised AML Bitcoin system, new blockchain/token, biometric identity system, AML/KYC functionality or other proprietary claims were implemented. Those are separate historical claims outside this reproduction test.
 
 It also does not require anybody to expose private wallet material.
 
@@ -162,4 +166,4 @@ That distinction is deliberate.
 
 ---
 
-**Do not trust the recovery because we say it works. Reproduce the evidence and make the result stand on its own.**
+**Do not trust the recovery because we say it works. Reproduce the precursor-chain evidence and make the result stand on its own.**
