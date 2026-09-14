@@ -11,18 +11,18 @@ Secondary (Contabo):  84.247.164.62:23247
 
 ## Purpose
 
-These nodes serve the latest authenticated historical AMLToken/ABTC snapshot currently recovered and remain available to compatible historical nodes that may possess later chain data.
+These nodes serve the latest authenticated historical **AMLToken/ABTC precursor-chain** snapshot currently recovered and remain available to compatible historical nodes that may possess later chain data.
 
 They are **not** replacement production chains, new token launches, or mining endpoints.
 
-The ticker **ABTC** is also used by unrelated modern projects. These endpoints serve the recovered **native historical AMLToken blockchain**, not an ERC-20 or BEP-20 contract token. See [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md) for the legal-history and chain-identity clarification.
+The ticker **ABTC** is also used by unrelated modern projects. These endpoints serve the recovered native historical AMLToken/ABTC precursor chain, not an ERC-20 or BEP-20 contract token and not the later advertised AML Bitcoin system. See [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md) and [`SCOPE_AND_TERMINOLOGY.md`](SCOPE_AND_TERMINOLOGY.md).
 
 Both nodes are deliberately operated:
 
 - without a wallet;
 - without mining;
 - with the recovered original AMLToken mainnet genesis;
-- with the independently validated historical snapshot through height 175168;
+- with the validated historical snapshot through height 175168;
 - with ordinary peer connectivity rather than the historical operator-controlled authorization gate;
 - with no invented blocks, balances or ownership changes.
 
@@ -41,7 +41,7 @@ The raw historical block file used to reconstruct and validate this snapshot has
 77b005775f3d87429571a52b491aeadd0787b3350b3b96249fb1a169964cbf03
 ```
 
-Fresh full reindexes on **three separate machines** independently reproduced the same height, tip and genesis without consensus rejection.
+Fresh full reindexes on **three separate project-controlled machines** reproduced the same height, tip and genesis without consensus rejection. This is project-controlled multi-host validation, not yet independent third-party reproduction.
 
 Block **175168 is the latest authenticated snapshot currently recovered**. It is **not** being claimed as the final historical AMLToken network tip.
 
@@ -116,6 +116,7 @@ No received continuation will be declared authoritative merely because it is lon
 
 See also:
 
+- [`SCOPE_AND_TERMINOLOGY.md`](SCOPE_AND_TERMINOLOGY.md)
 - [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md)
 - [`OLD_WALLET_CONNECTION_GUIDE.md`](OLD_WALLET_CONNECTION_GUIDE.md)
 - [`HISTORICAL_CHAIN_RECOVERY.md`](HISTORICAL_CHAIN_RECOVERY.md)
@@ -127,4 +128,4 @@ See also:
 
 ---
 
-**Validated history is being preserved redundantly. Later history remains open to evidence.**
+**Validated precursor-chain history is being preserved redundantly. Later history remains open to evidence.**
