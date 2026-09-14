@@ -15,6 +15,8 @@ These nodes serve the latest authenticated historical AMLToken/ABTC snapshot cur
 
 They are **not** replacement production chains, new token launches, or mining endpoints.
 
+The ticker **ABTC** is also used by unrelated modern projects. These endpoints serve the recovered **native historical AMLToken blockchain**, not an ERC-20 or BEP-20 contract token. See [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md) for the legal-history and chain-identity clarification.
+
 Both nodes are deliberately operated:
 
 - without a wallet;
@@ -114,6 +116,7 @@ No received continuation will be declared authoritative merely because it is lon
 
 See also:
 
+- [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md)
 - [`OLD_WALLET_CONNECTION_GUIDE.md`](OLD_WALLET_CONNECTION_GUIDE.md)
 - [`HISTORICAL_CHAIN_RECOVERY.md`](HISTORICAL_CHAIN_RECOVERY.md)
 - [`CHAIN_IDENTITY.md`](CHAIN_IDENTITY.md)
