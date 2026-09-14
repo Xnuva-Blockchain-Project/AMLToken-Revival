@@ -1,6 +1,8 @@
 # Evidence Register
 
-This register tracks the technical evidence currently supporting AMLToken reconstruction and historical-chain recovery.
+This register tracks the technical evidence currently supporting recovery of the historical native **AMLToken/ABTC precursor chain**.
+
+It does not treat recovery of that precursor ledger as evidence that the later advertised AML Bitcoin system or its proprietary biometric/AML/KYC features were completed. See [`SCOPE_AND_TERMINOLOGY.md`](SCOPE_AND_TERMINOLOGY.md) and [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md).
 
 ## E-001 — Original Windows client
 
@@ -51,11 +53,15 @@ A preserved 2018 Berkeley DB wallet was successfully recognized by the preserved
 
 State: **VERIFIED COMPATIBILITY EVIDENCE**
 
-## E-007 — Separate later AML Bitcoin codebase
+## E-007 — Separate later AML Bitcoin codebase and marketed system
 
-The historical `amltoken/amltoken` repository is Go/Skycoin-derived and is not treated as the source of truth for the earlier C++ AMLToken/ABTC ledger.
+The historical `amltoken/amltoken` repository is Go/Skycoin-derived and is not treated as the source of truth for the earlier C++ AMLToken/ABTC precursor ledger.
 
-State: **REFERENCE ONLY**
+Separately, the later system marketed as AML Bitcoin with biometric, AML/KYC, anti-terrorism, theft-resistant and other proprietary features is not treated as functionality proven by the recovered precursor chain.
+
+State: **REFERENCE / SCOPE SEPARATION ONLY**
+
+See [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md).
 
 ## E-008 — Historical authorized-peer tables
 
@@ -200,7 +206,7 @@ The complete historical snapshot was freshly reindexed on three separate project
 - T620 archival-node host;
 - Contabo secondary archival-node host.
 
-Each run independently reached height `175168`, the same genesis, the same best block hash and the same chainwork without consensus rejection.
+Each run reached height `175168`, the same genesis, the same best block hash and the same chainwork without consensus rejection.
 
 Clean reconstruction source commit used for the validated build:
 
@@ -255,7 +261,7 @@ See [`INDEPENDENT_REPRODUCTION.md`](INDEPENDENT_REPRODUCTION.md) and [GitHub Iss
 
 ## Current evidence gaps
 
-The principal historical-chain gap is surviving genuine AMLToken blockchain data later than height **175168**. That height is the latest authenticated snapshot currently recovered, not a claimed final network tip.
+The principal historical-chain gap is surviving genuine AMLToken/ABTC precursor-chain data later than height **175168**. That height is the latest authenticated snapshot currently recovered, not a claimed final network tip.
 
 The principal reproducibility gap is publication of the exact clean reconstruction source tree and preserved public historical raw block file so an unaffiliated reviewer can perform a complete end-to-end replay without trusting project-operated machines.
 

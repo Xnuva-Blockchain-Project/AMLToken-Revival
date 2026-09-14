@@ -4,7 +4,9 @@
 
 This document records the networking policy used by the AMLToken revival.
 
-The objective is to restore peer-to-peer availability while preserving the historical AMLToken blockchain, consensus rules, transaction history, balances and private-key ownership.
+The objective is to restore peer-to-peer availability for the historical native **AMLToken/ABTC precursor chain** while preserving its historical blockchain, consensus rules, transaction history, balances and private-key ownership.
+
+In this document, **revival** means forward engineering of that recovered precursor chain. It does **not** mean restoration of the later advertised AML Bitcoin system or its biometric, AML/KYC, anti-terrorism, theft-resistant or other proprietary features. See [`SCOPE_AND_TERMINOLOGY.md`](SCOPE_AND_TERMINOLOGY.md).
 
 No new genesis block, balance migration, historical rewrite or replacement ledger is permitted.
 
@@ -54,6 +56,8 @@ It does NOT change:
 - wallet keys;
 - balances;
 - historical chain data.
+
+It also does not claim or recreate any later advertised proprietary AML Bitcoin capability.
 
 ## Closed-network validation
 
@@ -106,7 +110,7 @@ SHA-256:
 b4957187a8132bb0a2d82bc2b5d45df2081ebc877a07a82ef251071a885284e3
 ```
 
-The empty mainnet seed lists are deliberate at this reconstruction stage. They prevent undocumented or guessed discovery infrastructure from being represented as historical fact.
+The empty mainnet seed lists were deliberate during reconstruction so undocumented or guessed discovery infrastructure was not represented as historical fact.
 
 ## Non-mainnet warning
 
@@ -128,7 +132,7 @@ When revival discovery infrastructure is eventually introduced, the following ru
 4. Discovery should use multiple independently operated endpoints where practical rather than recreate a single administrative dependency.
 5. Any new DNS or fixed seeds must be documented explicitly as **revival infrastructure**, not passed off as historical AMLToken data.
 6. Historical endpoints recovered from the original binary must not be silently reactivated or treated as authoritative simply because they appeared in the 2018 software.
-7. Public discovery infrastructure must not be activated as a substitute for recovering the legitimate historical chain.
+7. Public discovery infrastructure must not be activated as a substitute for recovering and authenticating the legitimate historical chain.
 
 This separates two questions that must remain distinct: **how peers discover one another** and **which blockchain history is legitimate**.
 
@@ -136,10 +140,10 @@ This separates two questions that must remain distinct: **how peers discover one
 
 The revival must not begin mining or extending a replacement production chain from genesis.
 
-Production operation requires recovery or independent verification of the legitimate historical AMLToken chain tip.
+The project has authenticated history through height **175168**, but that height is not yet claimed as the final historical network tip. Production continuation requires authentication of the genuine historical tip to the standard documented elsewhere in this repository.
 
-Until then, networking tests must remain isolated or explicitly non-production. Revival seed deployment may be designed and tested, but it must not be used to manufacture a new production history from height 0.
+If production continuation is eventually justified, the first revival-era production block must extend the authenticated historical AMLToken/ABTC precursor chain rather than replace it. Any new protocol or consensus functionality must be labelled as a forward revival-era change and must not be attributed retrospectively to the later advertised AML Bitcoin system.
 
 ---
 
-**Same genesis. Same historical ledger. Same ownership. Decentralized peer access.**
+**Same genesis. Same historical ledger. Same ownership. Decentralized peer access. No revival of unverified AML Bitcoin marketing claims.**

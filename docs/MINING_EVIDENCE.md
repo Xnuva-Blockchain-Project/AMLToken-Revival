@@ -2,6 +2,8 @@
 
 This document records mining-related behaviour observed directly from the preserved original **AMLToken-Qt v1.3.0** client. It is an evidence record, not a redesign specification.
 
+The evidence concerns the historical native **AMLToken/ABTC precursor chain**. It does not establish or restore the later advertised AML Bitcoin system or any claimed proprietary biometric/AML/KYC functionality. See [`SCOPE_AND_TERMINOLOGY.md`](SCOPE_AND_TERMINOLOGY.md).
+
 ## Observed client state
 
 The original client was started against an isolated data directory with no external network connectivity. At genesis-only state it reported:
@@ -39,9 +41,9 @@ When `getblocktemplate` was invoked while the original client was deliberately i
 ALMToken is not connected! (code -9)
 ```
 
-The spelling above is preserved exactly as emitted by the original client. This result means the client refuses to provide a mining template while it considers itself disconnected. Therefore the genesis-only isolated session cannot yet reveal the historical next-block coinbase reward, target or candidate-block parameters through `getblocktemplate`.
+The spelling above is preserved exactly as emitted by the original client. This result means the client refuses to provide a mining template while it considers itself disconnected. The genesis-only isolated session therefore did not reveal the historical next-block candidate parameters through `getblocktemplate`; those rules were later recovered from binary analysis and validated against historical block data where applicable.
 
-This connectivity requirement must not be bypassed by altering consensus code merely to obtain a template. A controlled test network can be used later once compatible reconstructed nodes exist.
+This connectivity requirement was not bypassed by weakening consensus code.
 
 ## Solved-block submission
 
@@ -107,7 +109,7 @@ The focused disassembly evidence was stored locally as `amltoken-pow-focused.txt
 - at an adjustment boundary, selects the first block of the interval and calls `CalculateNextWorkRequired`;
 - respects `fPowNoRetargeting`.
 
-With the independently recovered AMLToken mainnet parameters `nPowTargetTimespan = 600` seconds and `nPowTargetSpacing = 60` seconds, the mainnet difficulty-adjustment interval is **10 blocks**.
+With the recovered AMLToken mainnet parameters `nPowTargetTimespan = 600` seconds and `nPowTargetSpacing = 60` seconds, the mainnet difficulty-adjustment interval is **10 blocks**.
 
 ### Retarget calculation
 
@@ -132,14 +134,14 @@ No alternate retarget formula was observed.
 - convert the supplied 256-bit block hash to arithmetic form;
 - accept only when `hash <= target`.
 
-Combined with the independently verified `CBlockHeader::GetHash()` SHA-256d behaviour, this establishes the original AMLToken mainnet Proof-of-Work path as **Bitcoin-style SHA-256d Proof of Work with the standard Bitcoin-Core difficulty algorithm**.
+Combined with the verified `CBlockHeader::GetHash()` SHA-256d behaviour and successful full reindexes of the recovered historical block data, this establishes the historical AMLToken/ABTC precursor-chain Proof-of-Work path as **Bitcoin-style SHA-256d Proof of Work with the recovered Bitcoin-Core-style difficulty algorithm**.
 
 Accordingly, the reconstruction should leave upstream `pow.cpp` unchanged unless later surviving historical blocks provide contradictory evidence.
 
 ## Preservation requirement
 
-Mining must not begin on a replacement history from block 1. The revival objective is to recover and validate the historical AMLToken ledger and then, if continuity can be established, extend that same chain from its legitimate historical tip.
+Mining must not begin on a replacement history from block 1. The project has authenticated the AMLToken/ABTC precursor ledger through height **175168**, but that height is not claimed as the final historical tip.
 
-Development mining may be performed only on clearly labelled isolated test chains or regression environments and must never be represented as historical AMLToken mainnet history.
+Any future production continuation must extend the genuine authenticated historical tip once that boundary is established. Development mining may be performed only on clearly labelled isolated test chains or regression environments and must never be represented as historical AMLToken mainnet history or as proof of later advertised AML Bitcoin capabilities.
 
 **Same genesis. Same historical ledger. Same ownership.**

@@ -1,5 +1,9 @@
 # AMLToken Revival Project Checkpoint — 2026-09-14
 
+> **Historical checkpoint — superseded later on 14 September 2026.** This file is retained as a chronological record of the project state before the historical block data was recovered. Statements below saying the post-genesis chain was still missing or unrecovered are no longer current. The project subsequently authenticated the AMLToken/ABTC precursor chain through height **175168**, deployed two public archival/discovery nodes, and published the updated recovery record in [`HISTORICAL_CHAIN_RECOVERY.md`](HISTORICAL_CHAIN_RECOVERY.md). Current project status is in the repository README.
+>
+> **Scope note:** this project concerns the historical native **AMLToken/ABTC precursor chain**, not the later advertised AML Bitcoin system or its unverified proprietary features. See [`SCOPE_AND_TERMINOLOGY.md`](SCOPE_AND_TERMINOLOGY.md) and [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md).
+
 This checkpoint records the project state before a planned pause of approximately six weeks.
 
 The purpose is to make the reconstruction resumable without relying on memory, guesses or undocumented local state.

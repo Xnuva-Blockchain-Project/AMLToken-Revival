@@ -1,6 +1,8 @@
 # Reconstruction and Holder-Protection Policy
 
-AMLToken Revival exists to preserve evidence and, if technically possible, restore the original AMLToken (ABTC) network without rewriting historical ownership.
+AMLToken Revival exists to preserve evidence and, if technically possible, restore and continue the historical native **AMLToken/ABTC precursor chain** without rewriting historical ownership.
+
+This project does **not** treat the recovered precursor chain as proof that the later advertised AML Bitcoin system or its biometric, AML/KYC, anti-terrorism, theft-resistant or other proprietary features were completed. Repository-wide wording follows [`SCOPE_AND_TERMINOLOGY.md`](SCOPE_AND_TERMINOLOGY.md).
 
 ## Core rule
 
@@ -13,11 +15,13 @@ The purpose of reconstruction is continuity, not replacement.
 The project may:
 
 - recover chain parameters from original binaries, source fragments, wallets, blocks and other surviving artefacts;
-- reproduce the original node software sufficiently to validate the historical chain;
+- reproduce the original node software sufficiently to validate the historical AMLToken/ABTC precursor chain;
 - modernise build systems, dependencies and user interfaces where that does not alter historical consensus;
 - add forward-only safety or maintenance changes after a clearly documented activation point, if required;
 - build tools that allow historical holders to prove control of addresses without disclosing private keys;
 - document chain evidence so independent researchers can reproduce the findings.
+
+Any future modernisation is revival-era engineering of the recovered precursor chain. It must not be presented as restoration of unverified proprietary AML Bitcoin capabilities.
 
 ## What this project will not do
 
@@ -29,7 +33,9 @@ The project will not:
 - alter historical blocks or legitimate historical ownership;
 - request or collect private keys, seed phrases, wallet passphrases or private-key dumps;
 - publish private wallet files as recovery evidence;
-- silently substitute the later AML Bitcoin / Skycoin-derived chain for the original C++ ABTC chain;
+- silently substitute the later AML Bitcoin / Skycoin-derived codebase for the original C++ AMLToken/ABTC precursor chain;
+- represent recovery of the precursor ledger as proof that the later advertised AML Bitcoin system was completed;
+- attribute biometric, AML/KYC, anti-terrorism, theft-resistant or other proprietary AML Bitcoin claims to the recovered chain without independent technical evidence;
 - market the reconstruction as a new investment product or token sale.
 
 ## Historical-holder protection
@@ -55,7 +61,8 @@ If a forward-only change eventually becomes necessary, it must be:
 - activated only after the historical chain has been reconstructed and validated as far as surviving evidence permits;
 - deterministic and reviewable;
 - incapable of reallocating old balances by administrator decision;
-- clearly distinguished from original historical consensus.
+- clearly distinguished from original historical consensus;
+- labelled as revival-era functionality rather than attributed retrospectively to the former AML Bitcoin project.
 
 ## Evidence discipline
 
@@ -69,6 +76,13 @@ Every reconstructed parameter should be tagged according to its evidence state:
 
 Unknown values are not to be filled in by convenience.
 
-## Publication gate
+## Publication and reproducibility standard
 
-The repository should remain private during early reconstruction. Public release should occur only when the project can clearly state which parts of the chain have been independently reproduced, which historical data remain missing, and which behaviours are original versus forward-only revival changes.
+The repository is now public as a technical/evidence preview. Public wording must clearly distinguish:
+
+- the historical AMLToken/ABTC precursor chain from the later advertised AML Bitcoin system;
+- historical behaviour from forward-only revival changes;
+- project-controlled multi-host validation from genuine independent third-party reproduction;
+- authenticated history through height 175168 from any later candidate continuation that remains unverified.
+
+Independent third-party reproduction is not claimed until an unaffiliated reviewer completes the public replay procedure described in [`INDEPENDENT_REPRODUCTION.md`](INDEPENDENT_REPRODUCTION.md).

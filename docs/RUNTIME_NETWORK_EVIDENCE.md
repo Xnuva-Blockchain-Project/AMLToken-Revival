@@ -2,6 +2,8 @@
 
 This document records read-only RPC output obtained from the preserved original **AMLToken-Qt v1.3.0** Windows client while it was running inside an operating-system network namespace with no external route.
 
+The evidence fingerprints the historical native **AMLToken/ABTC precursor-chain client**. It does not establish or restore the later advertised AML Bitcoin system or its claimed proprietary features. See [`SCOPE_AND_TERMINOLOGY.md`](SCOPE_AND_TERMINOLOGY.md).
+
 The client reported `connections: 0`. Its own `getnetworkinfo` flags still described IPv4 and IPv6 as reachable; those flags are application/runtime capability indicators and must not be interpreted as proof that the isolated process had Internet connectivity.
 
 ## `getnetworkinfo`
@@ -66,6 +68,8 @@ These are verified observations of the original client while only genesis was lo
 
 ## Reconstruction significance
 
-A compatible revival node should reproduce these original runtime fingerprints where they reflect consensus or wire-protocol behaviour. Cosmetic version strings may later be modernised, but historical block validation, network message compatibility and activation logic must be reconstructed from evidence rather than assumed from a modern Bitcoin release.
+A compatible revival node should reproduce these original runtime fingerprints where they reflect consensus or wire-protocol behaviour of the historical AMLToken/ABTC precursor chain. Cosmetic version strings may later be modernised, but historical block validation, network message compatibility and activation logic must be reconstructed from evidence rather than assumed from a modern Bitcoin release.
+
+Any later functionality added by the revival must be labelled as forward revival-era engineering and must not be described as proof that the later advertised AML Bitcoin system possessed that functionality historically.
 
 **Same genesis. Same historical ledger. Same ownership.**

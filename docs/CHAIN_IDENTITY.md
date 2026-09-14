@@ -2,11 +2,13 @@
 
 This document records chain-identity facts recovered from surviving original AMLToken software. It is deliberately conservative: observations are separated from values recovered by static analysis, and uncertain values are not promoted to consensus facts.
 
+The chain described here is the historical native **AMLToken/ABTC precursor chain**. It is not evidence that the later advertised AML Bitcoin system or its proprietary biometric/AML/KYC features were completed. See [`SCOPE_AND_TERMINOLOGY.md`](SCOPE_AND_TERMINOLOGY.md) and [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md).
+
 ## Preservation invariant
 
 **Same genesis. Same historical ledger. Same ownership.**
 
-A revived implementation is not considered compatible merely because it uses the AMLToken name or ABTC ticker. It must reproduce the original chain identity and consensus behaviour.
+A revived implementation is not considered compatible merely because it uses the AMLToken name or ABTC ticker. It must reproduce the original chain identity and consensus behaviour of the historical AMLToken/ABTC precursor chain.
 
 ## Runtime-verified identity
 
@@ -101,7 +103,14 @@ The Windows executable contains Berkeley DB 4.8.30 support and identifies itself
 
 ## Important distinction
 
-The historical C++ AMLToken/ABTC chain documented here is distinct from the later Go/Skycoin-derived AML Bitcoin codebase found under `amltoken/amltoken`. The latter must not be used as a substitute genesis or ledger for ABTC holders.
+The historical C++ AMLToken/ABTC chain documented here is the precursor ledger recovered by this project.
+
+It is distinct from both:
+
+- the later advertised AML Bitcoin system with claimed biometric, AML/KYC, anti-terrorism, theft-resistant and other proprietary capabilities; and
+- the later Go/Skycoin-derived AML Bitcoin codebase found under `amltoken/amltoken`.
+
+Neither the later advertised system nor the later Go/Skycoin-derived codebase is used as a substitute genesis, ledger, balance source or proof of historical capability for the recovered AMLToken/ABTC precursor chain.
 
 ## Acceptance gate for reconstruction
 
@@ -113,6 +122,7 @@ Before reconstructed source is treated as an AMLToken-compatible node, it must a
 4. reproduce historical consensus rules for all known pre-revival heights;
 5. accept original serialized transactions and blocks without rewriting them;
 6. preserve existing private-key ownership and historical balances;
-7. avoid any new genesis, premine, manual balance allocation or synthetic migration ledger.
+7. avoid any new genesis, premine, manual balance allocation or synthetic migration ledger;
+8. avoid attributing unverified later AML Bitcoin marketing claims to the recovered precursor chain.
 
 Values marked **EXTRACTED** remain evidence to verify, not permission to guess missing consensus parameters.

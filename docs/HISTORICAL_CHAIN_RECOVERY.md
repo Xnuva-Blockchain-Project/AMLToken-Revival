@@ -2,11 +2,11 @@
 
 > Status: validated 14 September 2026
 
-The AMLToken Revival project has recovered an authenticated historical AMLToken/ABTC blockchain snapshot and validated it from the original mainnet genesis through block **175168**.
+The AMLToken Revival project has recovered an authenticated historical AMLToken/ABTC precursor-chain snapshot and validated it from the original mainnet genesis through block **175168**.
 
 This is a recovery of historical chain data. It is **not** a replacement chain, a new genesis, a balance recreation, or a synthetic migration.
 
-Because the ticker **ABTC** is also used by unrelated modern projects, readers should also see [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md) for the distinction between the native historical AMLToken chain, unrelated contract tokens, current market claims and the legal history of the former AML Bitcoin project.
+Repository-wide wording follows [`SCOPE_AND_TERMINOLOGY.md`](SCOPE_AND_TERMINOLOGY.md). Because the ticker **ABTC** is also used by unrelated modern projects, readers should also see [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md) for the distinction between the native historical AMLToken/ABTC precursor chain, unrelated contract tokens, current market claims and the later advertised AML Bitcoin system.
 
 ## Scope of the recovered chain
 
@@ -58,7 +58,7 @@ The complete snapshot was freshly reindexed on **three separate project-controll
 - the T620 archival node host;
 - the Contabo secondary archival node host.
 
-All three validations independently reproduced:
+All three runs reproduced:
 
 ```text
 blocks:  175168

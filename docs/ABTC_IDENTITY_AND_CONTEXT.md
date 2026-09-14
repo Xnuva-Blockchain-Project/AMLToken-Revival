@@ -2,6 +2,8 @@
 
 > This page exists to prevent confusion between the recovered historical AMLToken/ABTC blockchain, the later advertised AML Bitcoin system, later projects using the same ticker, and the legal history surrounding AML Bitcoin.
 
+Repository-wide wording is governed by [`SCOPE_AND_TERMINOLOGY.md`](SCOPE_AND_TERMINOLOGY.md).
+
 ## Short version
 
 **AMLToken Revival is an independent technical preservation project for the original native AMLToken/ABTC precursor blockchain.**
@@ -10,7 +12,7 @@ It is not affiliated with, endorsed by, or operated by the former AML Bitcoin / 
 
 The project does **not** claim that ABTC currently has a liquid market price, an active exchange market, or present-day commercial value.
 
-What the project has established is technical and historical: the original native AMLToken/ABTC blockchain has been recovered and independently validated from its original mainnet genesis through at least block **175168**.
+What the project has established is technical and historical: the original native AMLToken/ABTC precursor blockchain has been recovered and validated from its original mainnet genesis through at least block **175168**, including fresh full reindexes on three separate project-controlled machines.
 
 That recovered chain is not an ERC-20 or BEP-20 replacement token and is not identified by an Ethereum or BNB Chain contract address.
 
@@ -31,7 +33,7 @@ The recovered blockchain documented by this repository is therefore framed narro
 
 AMLToken Revival does **not** claim that the later advertised AML Bitcoin system was completed, does not attribute its promised biometric/AML/KYC or proprietary compliance features to the recovered chain, and does not treat recovery of the ABTC precursor ledger as proof that the later marketed technology existed.
 
-If the historical ABTC chain is eventually modernised and continued, any future engineering work will be documented as a forward revival of this recovered chain. It will not be presented as restoration of proprietary AML Bitcoin capabilities that have not been independently demonstrated from surviving technical evidence.
+If the historical ABTC chain is eventually modernised and continued, any future engineering work will be documented as a forward revival of this recovered precursor chain. It will not be presented as restoration of proprietary AML Bitcoin capabilities that have not been independently demonstrated from surviving technical evidence.
 
 ## The legal history and the blockchain are separate questions
 
@@ -50,7 +52,7 @@ AMLToken Revival does not dispute, minimise or attempt to rehabilitate that hist
 
 The technical recovery question is different: **did the original AMLToken/ABTC precursor blockchain exist, and can its historical ledger be preserved and authenticated without rewriting ownership?**
 
-The recovered evidence shows that such a chain did exist. The project has preserved the original genesis, recovered historical blocks and consensus behaviour, and independently validated the chain through height 175168 on three separate project-controlled machines.
+The recovered evidence shows that such a chain did exist. The project has preserved the original genesis, recovered historical blocks and consensus behaviour, and validated the chain through height 175168 on three separate project-controlled machines.
 
 See [`HISTORICAL_CHAIN_RECOVERY.md`](HISTORICAL_CHAIN_RECOVERY.md) for the technical evidence and [`INDEPENDENT_REPRODUCTION.md`](INDEPENDENT_REPRODUCTION.md) for the distinction between project-controlled multi-host reproduction and future independent third-party replication.
 
@@ -96,7 +98,7 @@ The preserved historical raw block file used for validation has SHA256:
 77b005775f3d87429571a52b491aeadd0787b3350b3b96249fb1a169964cbf03
 ```
 
-These chain-level identifiers, together with the preserved original software and independently reproduced consensus validation, are what identify the historical network.
+These chain-level identifiers, together with the preserved original software and repeated project-controlled full-reindex validation, are what identify the historical network.
 
 ## What the revival project is — and is not
 

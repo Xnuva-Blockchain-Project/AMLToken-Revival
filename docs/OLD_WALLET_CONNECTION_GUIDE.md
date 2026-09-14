@@ -8,13 +8,15 @@
 
 Before changing anything, **close AMLToken-Qt completely and make a backup of the entire AMLToken data folder**. Keep the original backup untouched.
 
-The recovery nodes currently serve authenticated historical AMLToken blockchain data through block **175168**. If your old installation contains genuine later blockchain data, it may help recover more of the original AMLToken history.
+The recovery nodes currently serve authenticated historical AMLToken/ABTC precursor-chain data through block **175168**. If your old installation contains genuine later blockchain data, it may help recover more of the original AMLToken history.
+
+This guide concerns the historical AMLToken/ABTC precursor chain. It does **not** concern the later advertised AML Bitcoin system or unrelated modern assets using the ticker ABTC. See [`SCOPE_AND_TERMINOLOGY.md`](SCOPE_AND_TERMINOLOGY.md).
 
 ## Q: I found an ABTC token or contract online. Is that the same thing?
 
 **Not necessarily.** The ticker **ABTC** has been used by unrelated projects.
 
-The recovery project described here concerns the **original native AMLToken/ABTC blockchain**, not an ERC-20 or BEP-20 token identified by a modern contract address.
+The recovery project described here concerns the **original native AMLToken/ABTC precursor blockchain**, not an ERC-20 or BEP-20 token identified by a modern contract address and not the later advertised AML Bitcoin system.
 
 Do not import an unrelated ABTC contract into a wallet or use it to judge the balance of your old AMLToken wallet.
 
@@ -144,13 +146,15 @@ Primary (T620):        81.130.208.151:23247
 Secondary (Contabo):  84.247.164.62:23247
 ```
 
-Both are walletless and non-mining archival/discovery nodes. They currently serve the independently validated historical AMLToken snapshot through height **175168**.
+Both are walletless and non-mining archival/discovery nodes. They currently serve the validated historical AMLToken/ABTC precursor-chain snapshot through height **175168**.
+
+That snapshot has been reindexed successfully on three separate project-controlled machines. Independent third-party reproduction remains an open milestone; see [`INDEPENDENT_REPRODUCTION.md`](INDEPENDENT_REPRODUCTION.md).
 
 Height 175168 is the latest authenticated snapshot currently recovered. It is **not being claimed as the final historical AMLToken network tip**.
 
 Any later blocks recovered from an old holder must still be preserved and independently validated before they are accepted as authentic historical continuation.
 
-For a fuller explanation of what AMLToken Revival is recovering — and what unrelated modern ABTC tokens are not part of this chain — see [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md).
+For a fuller explanation of what AMLToken Revival is recovering — and what unrelated modern ABTC tokens or later advertised AML Bitcoin technology are not part of this chain — see [`ABTC_IDENTITY_AND_CONTEXT.md`](ABTC_IDENTITY_AND_CONTEXT.md).
 
 ---
 
