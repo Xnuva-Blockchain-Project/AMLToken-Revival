@@ -1,49 +1,128 @@
 # AMLToken Revival
 
+> **Public Technical Preview — 14 September 2026**
+
 AMLToken Revival is an independent preservation and recovery project for the original **AMLToken (ABTC)** blockchain.
 
-## Why this project exists
+This public preview is being released so historical holders, researchers, developers and anyone who may still possess old AMLToken data can see what has been recovered and help locate the missing historical blockchain.
 
-The original AMLToken / AML Bitcoin operation ceased to provide a practical path for some historical purchasers and token holders to access, verify, or convert their holdings. Subsequent criminal fraud proceedings involving the original operation reinforced the need to preserve the technical record independently.
+## Important status
 
-This project exists to help protect affected historical holders by preserving the original blockchain evidence and, where technically possible, restoring access to the original network without rewriting ownership.
+**This is not a live replacement blockchain and it is not a new token launch.**
 
-This is **not a new token launch** and it is not an attempt to create replacement balances for old holders.
+The project has recovered and independently reproduced important parts of the original AMLToken network identity, but the legitimate post-genesis historical blockchain has **not yet been recovered**. For that reason:
 
-## Preservation rule
+- no replacement production chain will be mined from genesis;
+- no balances will be recreated by hand;
+- no historical ownership will be rewritten;
+- no public release should be represented as an authoritative live AMLToken network yet.
+
+The preservation rule is simple:
 
 **Same genesis. Same historical ledger. Same ownership.**
 
-The project will not:
+## What has been recovered
 
-- create a replacement genesis block;
-- arbitrarily issue coins or recreate balances by hand;
-- rewrite legitimate historical transactions;
-- require holders to surrender private keys in order to establish ownership;
-- present a reconstructed chain as original unless its historical continuity can be demonstrated.
+Evidence-led reconstruction has established:
 
-Any unavoidable forward-only repair or modernisation must be documented and must not retroactively alter legitimate historical ownership.
+- preserved original AMLToken-Qt v1.3.0 Windows and Linux artefacts with cryptographic hashes;
+- the exact original AMLToken mainnet genesis block;
+- the historical network message magic and default P2P port;
+- Bitcoin-style SHA256d proof of work and recovered difficulty behaviour;
+- compatibility of a preserved historical Berkeley DB wallet with the original client;
+- the strongest known Bitcoin Core upstream baseline used by the original software;
+- an historical operator-defined peer-control mechanism based on `PeerAllowed()` and `pnSeed6_authorized`;
+- exactly five direct `PeerAllowed()` call sites affecting outbound connection progression, eviction/retention treatment, address-message processing, block-message processing and compact-block processing;
+- a decentralized revival networking path in which ordinary compatible peers can complete a full protocol-70015 handshake without the historical authorization gate.
 
-## Recovery objective
-
-The immediate objective is to reconstruct enough of the original AMLToken Core software and chain parameters to reproduce the historical network exactly, beginning with the known original mainnet genesis block:
+The recovered mainnet genesis is:
 
 ```text
 00000000230d6b389555e80e4523a32343531448ddd15fbc29c0fdc11dbb1538
 ```
 
-From there, the project will attempt to locate or reconstruct surviving historical blockchain data, validate original transactions, and determine whether the original ledger can be brought back into service without creating a new chain.
+## Historical network-control finding
 
-## Holder safety
+Static analysis of the preserved original AMLToken-Qt v1.3.0 Linux binary established that the historical software contained both a normal fixed-seed table and a separate **authorized-peer table**.
 
-Historical holders should **never publish or submit** wallet files, private keys, seed phrases, wallet passphrases, or private-key dumps.
+The original client actively consulted that authorized list through `PeerAllowed()` in the normal outbound connection path and in several later peer/message-processing paths.
 
-Public addresses, transaction IDs, block hashes and other public blockchain data may be used as evidence. Where ownership needs to be demonstrated, the preferred approach is cryptographic proof that does not expose private key material.
+The revival does **not** recreate that operator-controlled authorization requirement. Seed infrastructure in any future revival will be for discovery only and will not receive consensus, connection, eviction or message-processing privilege.
+
+This finding is documented from preserved binary evidence. The project does not infer developer motive beyond what the software itself proves.
+
+See:
+
+- [`docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md`](docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md)
+- [`docs/NETWORK_REVIVAL_POLICY.md`](docs/NETWORK_REVIVAL_POLICY.md)
+
+## The missing piece: historical chain data
+
+The principal blocker is the legitimate **post-genesis AMLToken/ABTC blockchain**.
+
+If you operated AMLToken in 2017–2019, an old computer, disk image, backup, VPS snapshot or archived data directory may contain useful blockchain data such as:
+
+```text
+.amltoken/
+blocks/
+blk*.dat
+chainstate/
+peers.dat
+```
+
+If you find candidate historical blockchain data, preserve it before modifying or opening it with newer software. Hashing and read-only analysis should come first.
+
+### Do not publish private wallet material
+
+Historical holders should **never** post or send:
+
+- `wallet.dat`;
+- private keys;
+- seed phrases;
+- wallet passphrases;
+- `dumpwallet` or `dumpprivkey` output.
+
+Public addresses, transaction IDs, block hashes and non-private blockchain files can be discussed without exposing private-key material.
+
+## Documentation
+
+The public evidence set currently includes:
+
+- [`docs/CHAIN_IDENTITY.md`](docs/CHAIN_IDENTITY.md) — recovered chain identity and mainnet parameters;
+- [`docs/GENESIS_REPRODUCTION.md`](docs/GENESIS_REPRODUCTION.md) — deterministic reproduction of the original genesis;
+- [`docs/EVIDENCE_REGISTER.md`](docs/EVIDENCE_REGISTER.md) — evidence provenance and verification status;
+- [`docs/MINING_EVIDENCE.md`](docs/MINING_EVIDENCE.md) — mining and proof-of-work evidence;
+- [`docs/RUNTIME_NETWORK_EVIDENCE.md`](docs/RUNTIME_NETWORK_EVIDENCE.md) — original runtime network/consensus fingerprints;
+- [`docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md`](docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md) — recovered authorized-peer mechanism and call-site analysis;
+- [`docs/NETWORK_REVIVAL_POLICY.md`](docs/NETWORK_REVIVAL_POLICY.md) — decentralized revival networking policy;
+- [`docs/UPSTREAM_BASELINE.md`](docs/UPSTREAM_BASELINE.md) — strongest identified upstream Bitcoin Core baseline;
+- [`docs/RECONSTRUCTION_POLICY.md`](docs/RECONSTRUCTION_POLICY.md) — holder-protection and continuity rules;
+- [`docs/PROJECT_CHECKPOINT_2026-09-14.md`](docs/PROJECT_CHECKPOINT_2026-09-14.md) — project state at the September 2026 pause.
+
+## Current engineering status
+
+The reconstructed node has reproduced the exact original genesis in an isolated environment. Two reconstructed nodes have also completed a full ordinary-peer handshake while remaining at height 0 and without mining any replacement history.
+
+Mainnet discovery seeds are deliberately left empty at this stage. We will not invent historical infrastructure or use new seed nodes as a substitute for recovering the legitimate chain.
+
+The current inherited Bitcoin testnet configuration is **not** treated as historical AMLToken testnet identity.
+
+## How to help
+
+The most useful contribution during this stage is evidence: old blockchain data, archived public source material, old installation packages, historical node information, block explorers, transaction records or verifiable technical documentation.
+
+Please open a GitHub issue for non-private evidence or leads. **Do not attach wallet files or private keys.**
 
 ## Independence
 
 AMLToken Revival is an independent preservation project. It is **not affiliated with, endorsed by, or operated by** the original AMLToken, AML Bitcoin, NAC Foundation, or their former operators.
 
-## Current status
+## Release status
 
-The repository is currently private while the original chain parameters, software behaviour and historical evidence are being reconstructed and verified. No public release or replacement network should be considered authoritative until the original chain identity and consensus behaviour have been reproduced and independently checked.
+This repository is a **technical/evidence preview** intended to build community awareness and locate historical data. It is not an invitation to trade, mine a replacement history, deposit funds, or treat reconstructed balances as authoritative.
+
+See [`RELEASE_NOTES_2026-09-14.md`](RELEASE_NOTES_2026-09-14.md) for the preview release summary.
+
+---
+
+**Preserve the evidence. Recover the history. Restore the network without rewriting ownership.**
