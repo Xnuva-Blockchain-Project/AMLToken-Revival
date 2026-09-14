@@ -83,9 +83,9 @@ SHA-256:
 174b2764550ba6b9c9b8d8239aa8b5774b9a42f24cdd295b92ca3486d3ece3ab
 ```
 
-## Current discovery baseline
+## Current mainnet discovery baseline
 
-A read-only audit of the reconstructed source confirmed the following mainnet state:
+A read-only audit of the reconstructed source confirmed the following **mainnet** state:
 
 - default AMLToken P2P port: `23247`;
 - no `PeerAllowed` symbol in the reconstructed source;
@@ -107,6 +107,14 @@ b4957187a8132bb0a2d82bc2b5d45df2081ebc877a07a82ef251071a885284e3
 ```
 
 The empty mainnet seed lists are deliberate at this reconstruction stage. They prevent undocumented or guessed discovery infrastructure from being represented as historical fact.
+
+## Non-mainnet warning
+
+The current reconstruction work is authoritative only for the evidence-backed **mainnet** parameters documented in this repository.
+
+The source tree still contains inherited upstream Bitcoin testnet configuration, including upstream Bitcoin testnet DNS/fixed seed material. That configuration has **not** been established as historical AMLToken testnet identity and must not be presented or used as such.
+
+Until AMLToken-specific testnet evidence is recovered and reconstructed, operators should avoid using `-testnet` for AMLToken historical validation. Regtest may be useful for explicitly local engineering tests, but it is not historical mainnet evidence.
 
 ## Decentralized discovery policy
 
