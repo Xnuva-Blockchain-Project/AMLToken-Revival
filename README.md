@@ -1,35 +1,60 @@
 # AMLToken Revival
 
-> **Public Technical Preview — 14 September 2026**
+> **Public Technical Preview — updated 14 September 2026**
 
 AMLToken Revival is an independent preservation and recovery project for the original **AMLToken (ABTC)** blockchain.
 
-This public preview is being released so historical holders, researchers, developers and anyone who may still possess old AMLToken data can see what has been recovered and help locate the missing historical blockchain.
+The project has now recovered and independently validated an authenticated historical AMLToken blockchain snapshot from the original mainnet genesis through block **175168**.
+
+This repository exists to preserve the technical evidence, document the reconstruction, help locate any later surviving historical chain data, and restore network access without rewriting historical ownership.
 
 ## Important status
 
-**This is not a live replacement blockchain and it is not a new token launch.**
+**This is not a replacement blockchain and it is not a new token launch.**
 
-The project has recovered and independently reproduced important parts of the original AMLToken network identity, but the legitimate post-genesis historical blockchain has **not yet been recovered**. For that reason:
+The recovered snapshot validates the original AMLToken ledger through height **175168**. That height is the latest authenticated snapshot currently recovered; it is **not being claimed as the final historical network tip**.
 
-- no replacement production chain will be mined from genesis;
+The preservation rules remain unchanged:
+
+- no replacement production history will be mined from genesis;
 - no balances will be recreated by hand;
 - no historical ownership will be rewritten;
-- no public release should be represented as an authoritative live AMLToken network yet.
+- later chain data will not be treated as authentic merely because it is longer;
+- any continuation beyond height 175168 must independently satisfy chain continuity and consensus validation.
 
-The preservation rule is simple:
+The project rule is simple:
 
 **Same genesis. Same historical ledger. Same ownership.**
 
-## Public historical-chain discovery node
+## Validated historical snapshot
 
-A public, walletless and non-mining AMLToken recovery node is now available at:
+Current authenticated chain state:
+
+```text
+height: 175168
+bestblockhash: 000000008be329b7f5186e61c86367ece62db781374cc7c4fee46ba296b40025
+genesis: 00000000230d6b389555e80e4523a32343531448ddd15fbc29c0fdc11dbb1538
+```
+
+The preserved raw historical block file used for validation has SHA256:
+
+```text
+77b005775f3d87429571a52b491aeadd0787b3350b3b96249fb1a169964cbf03
+```
+
+Fresh full reindexes on two separate machines independently reproduced the same height, tip and genesis without consensus rejection.
+
+See [`docs/HISTORICAL_CHAIN_RECOVERY.md`](docs/HISTORICAL_CHAIN_RECOVERY.md) for the recovery and validation record.
+
+## Public historical-chain archival/discovery node
+
+A public, walletless and non-mining AMLToken recovery node is available at:
 
 ```text
 81.130.208.151:23247
 ```
 
-Its sole purpose is to help locate surviving historical AMLToken peers and recover the legitimate post-genesis blockchain. The node currently remains deliberately at the recovered original genesis with `blocks: 0` and `headers: 0`; it does not mine or manufacture replacement history.
+It now serves the validated historical snapshot through block **175168** and remains available for compatible historical AMLToken nodes that may possess later chain data.
 
 Surviving historical AMLToken nodes may connect using:
 
@@ -37,9 +62,11 @@ Surviving historical AMLToken nodes may connect using:
 addnode=81.130.208.151:23247
 ```
 
-Any historical headers or blocks received from a peer must still pass normal consensus and continuity checks before being treated as recovered chain history.
+The endpoint has been externally verified as reachable from an independent Internet host.
 
-See [`docs/PUBLIC_DISCOVERY_NODE.md`](docs/PUBLIC_DISCOVERY_NODE.md) for status, connection guidance and safety notes.
+Any later headers or blocks received from a peer must still pass normal consensus and continuity checks before being treated as authenticated historical chain data.
+
+See [`docs/PUBLIC_DISCOVERY_NODE.md`](docs/PUBLIC_DISCOVERY_NODE.md) for current node status, connection guidance and safety notes.
 
 ## What has been recovered
 
@@ -51,6 +78,9 @@ Evidence-led reconstruction has established:
 - Bitcoin-style SHA256d proof of work and recovered difficulty behaviour;
 - compatibility of a preserved historical Berkeley DB wallet with the original client;
 - the strongest known Bitcoin Core upstream baseline used by the original software;
+- the original AMLToken monetary limits, subsidy behaviour and 20-block coinbase maturity from preserved binary evidence;
+- an authenticated raw historical blockchain from genesis through height 175168;
+- end-to-end independent validation of that snapshot on two separate machines;
 - an historical operator-defined peer-control mechanism based on `PeerAllowed()` and `pnSeed6_authorized`;
 - exactly five direct `PeerAllowed()` call sites affecting outbound connection progression, eviction/retention treatment, address-message processing, block-message processing and compact-block processing;
 - a decentralized revival networking path in which ordinary compatible peers can complete a full protocol-70015 handshake without the historical authorization gate.
@@ -76,11 +106,11 @@ See:
 - [`docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md`](docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md)
 - [`docs/NETWORK_REVIVAL_POLICY.md`](docs/NETWORK_REVIVAL_POLICY.md)
 
-## The missing piece: historical chain data
+## The remaining historical-chain question
 
-The principal blocker is the legitimate **post-genesis AMLToken/ABTC blockchain**.
+The principal recovery target is now **chain data later than block 175168**.
 
-If you operated AMLToken in 2017–2019, an old computer, disk image, backup, VPS snapshot or archived data directory may contain useful blockchain data such as:
+If you operated AMLToken in 2017–2019, an old computer, disk image, backup, VPS snapshot, exchange node, pool server or archived data directory may contain useful blockchain data such as:
 
 ```text
 .amltoken/
@@ -89,6 +119,15 @@ blk*.dat
 chainstate/
 peers.dat
 ```
+
+Particularly useful evidence includes:
+
+- `blk*.dat` data extending beyond height 175168;
+- block height/hash pairs later than 175168;
+- later block-index or chainstate archives;
+- historical explorer exports;
+- old node backups and VPS snapshots;
+- archived node IPs or public technical records.
 
 If you find candidate historical blockchain data, preserve it before modifying or opening it with newer software. Hashing and read-only analysis should come first.
 
@@ -110,31 +149,34 @@ The public evidence set currently includes:
 
 - [`docs/CHAIN_IDENTITY.md`](docs/CHAIN_IDENTITY.md) — recovered chain identity and mainnet parameters;
 - [`docs/GENESIS_REPRODUCTION.md`](docs/GENESIS_REPRODUCTION.md) — deterministic reproduction of the original genesis;
+- [`docs/HISTORICAL_CHAIN_RECOVERY.md`](docs/HISTORICAL_CHAIN_RECOVERY.md) — recovered snapshot identity, consensus reconstruction and independent validation;
 - [`docs/EVIDENCE_REGISTER.md`](docs/EVIDENCE_REGISTER.md) — evidence provenance and verification status;
 - [`docs/MINING_EVIDENCE.md`](docs/MINING_EVIDENCE.md) — mining and proof-of-work evidence;
 - [`docs/RUNTIME_NETWORK_EVIDENCE.md`](docs/RUNTIME_NETWORK_EVIDENCE.md) — original runtime network/consensus fingerprints;
 - [`docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md`](docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md) — recovered authorized-peer mechanism and call-site analysis;
 - [`docs/NETWORK_REVIVAL_POLICY.md`](docs/NETWORK_REVIVAL_POLICY.md) — decentralized revival networking policy;
-- [`docs/PUBLIC_DISCOVERY_NODE.md`](docs/PUBLIC_DISCOVERY_NODE.md) — public historical-chain discovery endpoint and connection guidance;
+- [`docs/PUBLIC_DISCOVERY_NODE.md`](docs/PUBLIC_DISCOVERY_NODE.md) — public historical-chain endpoint and connection guidance;
 - [`docs/UPSTREAM_BASELINE.md`](docs/UPSTREAM_BASELINE.md) — strongest identified upstream Bitcoin Core baseline;
 - [`docs/RECONSTRUCTION_POLICY.md`](docs/RECONSTRUCTION_POLICY.md) — holder-protection and continuity rules;
-- [`docs/PROJECT_CHECKPOINT_2026-09-14.md`](docs/PROJECT_CHECKPOINT_2026-09-14.md) — project state at the September 2026 pause.
+- [`docs/PROJECT_CHECKPOINT_2026-09-14.md`](docs/PROJECT_CHECKPOINT_2026-09-14.md) — earlier project checkpoint preserved as a dated record.
 
 ## Current engineering status
 
-The reconstructed node has reproduced the exact original genesis in an isolated environment. Two reconstructed nodes have also completed a full ordinary-peer handshake while remaining at height 0 and without mining any replacement history.
+The reconstructed node now validates the recovered historical ledger from genesis through block 175168.
 
-A public historical-chain discovery endpoint is now operating at `81.130.208.151:23247`. It is walletless and non-mining and exists solely to accept compatible historical peers and recover legitimate chain data if any surviving node reconnects.
+A clean reconstruction build was used to perform fresh full reindexes on two separate machines. Both independently reached the exact same authenticated tip with no consensus rejection.
 
-Mainnet discovery seeds are deliberately left empty at this stage. We will not invent historical infrastructure or use new seed nodes as a substitute for recovering the legitimate chain.
+A public archival/discovery endpoint is operating at `81.130.208.151:23247`. It is walletless, non-mining and serves a working copy of the validated snapshot. A separate canonical snapshot is retained as archival evidence so later P2P activity cannot alter the recovered baseline.
+
+Mainnet discovery seeds are not being invented as a substitute for historical evidence. The public node accepts compatible inbound connections, while later chain data remains subject to independent preservation and validation.
 
 The current inherited Bitcoin testnet configuration is **not** treated as historical AMLToken testnet identity.
 
 ## How to help
 
-The most useful contribution during this stage is evidence: old blockchain data, archived public source material, old installation packages, historical node information, block explorers, transaction records or verifiable technical documentation.
+The most useful contribution now is evidence that may extend or independently corroborate the recovered chain: later blockchain data, archived public source material, old installation packages, historical node information, block explorers, transaction records or verifiable technical documentation.
 
-Please open a GitHub issue for non-private evidence or leads. **Do not attach wallet files or private keys.**
+Please use [GitHub Issue #2](https://github.com/Xnuva-Blockchain-Project/AMLToken-Revival/issues/2) for non-private historical-chain evidence or leads. **Do not attach wallet files or private keys.**
 
 ## Independence
 
@@ -142,9 +184,9 @@ AMLToken Revival is an independent preservation project. It is **not affiliated 
 
 ## Release status
 
-This repository is a **technical/evidence preview** intended to build community awareness and locate historical data. It is not an invitation to trade, mine a replacement history, deposit funds, or treat reconstructed balances as authoritative.
+This repository remains a **technical/evidence preview**. Recovery of an authenticated snapshot does not make this an invitation to trade, mine replacement history, deposit funds, or assume that height 175168 was the final historical network tip.
 
-See [`RELEASE_NOTES_2026-09-14.md`](RELEASE_NOTES_2026-09-14.md) for the preview release summary.
+See [`RELEASE_NOTES_2026-09-14.md`](RELEASE_NOTES_2026-09-14.md) for the preview release summary and recovery update.
 
 ---
 
