@@ -2,6 +2,8 @@
 
 This document records evidence recovered from the preserved original **AMLToken-Qt v1.3.0** Linux binary showing that the historical client contained an operator-defined peer authorization mechanism in addition to ordinary fixed-seed infrastructure.
 
+The evidence concerns the historical native **AMLToken/ABTC precursor chain**. It does not establish or restore the later advertised AML Bitcoin system or any claimed proprietary biometric/AML/KYC features. See [`SCOPE_AND_TERMINOLOGY.md`](SCOPE_AND_TERMINOLOGY.md).
+
 The purpose of publishing this material is transparency. It documents what the original software actually did, what users depended on for connectivity, and why the revival deliberately does not restore a centralized peer-authorization gate.
 
 This document describes technical behaviour only. It does **not** attempt to infer the developers' motive or intent beyond what the binary proves.
@@ -180,7 +182,7 @@ It does **not**, by itself, prove that this mechanism was the sole reason the hi
 
 AMLToken Revival will not reproduce the historical requirement that an ordinary peer must belong to an operator-controlled authorized list before it can use the normal outbound connection path.
 
-The reconstructed node retains ordinary decentralized peer connectivity while preserving chain-critical identity and validation rules.
+The reconstructed node retains ordinary decentralized peer connectivity while preserving chain-critical identity and validation rules of the historical AMLToken/ABTC precursor chain.
 
 The revival does **not** use removal of this network gate as permission to alter:
 
@@ -194,7 +196,7 @@ The revival does **not** use removal of this network gate as permission to alter
 - private-key ownership;
 - legitimate historical chain data.
 
-No replacement production chain is to be mined from genesis while the legitimate historical post-genesis chain remains unrecovered.
+The project has authenticated the precursor chain through height **175168**, but that height is not yet claimed as the final historical network tip. No replacement production history is to be mined from genesis. Any future production continuation must extend the authenticated genuine historical tip and must be labelled as revival-era engineering rather than as restoration of unverified later AML Bitcoin capabilities.
 
 ## Closed-network validation of the revival decision
 
@@ -253,4 +255,4 @@ Likewise, lower-level branch semantics inside the three message-processing call 
 
 ---
 
-**Same genesis. Same historical ledger. Same ownership. No hidden peer gate in the revival.**
+**Same genesis. Same historical ledger. Same ownership. No hidden peer gate in the revival. No inheritance of unverified AML Bitcoin marketing claims.**
