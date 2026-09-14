@@ -52,9 +52,23 @@ The preserved raw historical block file used for validation has SHA256:
 77b005775f3d87429571a52b491aeadd0787b3350b3b96249fb1a169964cbf03
 ```
 
-Fresh full reindexes on **three separate machines** independently reproduced the same height, tip and genesis without consensus rejection.
+Fresh full reindexes on **three separate project-controlled machines** reproduced the same height, tip and genesis without consensus rejection.
 
 See [`docs/HISTORICAL_CHAIN_RECOVERY.md`](docs/HISTORICAL_CHAIN_RECOVERY.md) for the recovery and validation record.
+
+## Independent reproducibility
+
+The project deliberately distinguishes between **multi-host reproduction under project control** and **independent third-party reproduction**.
+
+The three completed full reindexes are strong internal cross-checks, but they are not being presented as third-party replication. A complete outsider replay from GitHub alone is not yet possible because the exact clean reconstruction source tree used for validation and the preserved public historical `blk00000.dat` still need to be published in durable public form.
+
+The target is simple:
+
+**Do not trust our result. Reproduce it.**
+
+The public reproducibility framework, expected hashes and verification standard are documented in [`docs/INDEPENDENT_REPRODUCTION.md`](docs/INDEPENDENT_REPRODUCTION.md). Publication of the remaining artefacts and the first unaffiliated reproduction are tracked in [GitHub Issue #3](https://github.com/Xnuva-Blockchain-Project/AMLToken-Revival/issues/3).
+
+Until an independent reviewer completes that process, this project will not describe the recovery as independently third-party reproduced.
 
 ## Public historical-chain archival/discovery nodes
 
@@ -100,7 +114,7 @@ Evidence-led reconstruction has established:
 - the strongest known Bitcoin Core upstream baseline used by the original software;
 - the original AMLToken monetary limits, subsidy behaviour and 20-block coinbase maturity from preserved binary evidence;
 - an authenticated raw historical blockchain from genesis through height 175168;
-- end-to-end independent validation of that snapshot on three separate machines;
+- three fresh full reindexes on separate project-controlled machines reaching the same recovered state;
 - two independently reachable public archival/discovery nodes on separate networks;
 - an historical operator-defined peer-control mechanism based on `PeerAllowed()` and `pnSeed6_authorized`;
 - exactly five direct `PeerAllowed()` call sites affecting outbound connection progression, eviction/retention treatment, address-message processing, block-message processing and compact-block processing;
@@ -170,9 +184,10 @@ The public evidence set currently includes:
 
 - [`docs/ABTC_IDENTITY_AND_CONTEXT.md`](docs/ABTC_IDENTITY_AND_CONTEXT.md) — clarification of AMLToken/ABTC chain identity, legal context, ticker confusion and unrelated modern ABTC tokens;
 - [`docs/OLD_WALLET_CONNECTION_GUIDE.md`](docs/OLD_WALLET_CONNECTION_GUIDE.md) — simple Windows/Linux/macOS instructions for old wallet holders who want to connect safely to the recovery nodes;
+- [`docs/INDEPENDENT_REPRODUCTION.md`](docs/INDEPENDENT_REPRODUCTION.md) — public reproducibility standard, expected hashes and the boundary between project-controlled validation and true third-party reproduction;
 - [`docs/CHAIN_IDENTITY.md`](docs/CHAIN_IDENTITY.md) — recovered chain identity and mainnet parameters;
 - [`docs/GENESIS_REPRODUCTION.md`](docs/GENESIS_REPRODUCTION.md) — deterministic reproduction of the original genesis;
-- [`docs/HISTORICAL_CHAIN_RECOVERY.md`](docs/HISTORICAL_CHAIN_RECOVERY.md) — recovered snapshot identity, consensus reconstruction and independent validation;
+- [`docs/HISTORICAL_CHAIN_RECOVERY.md`](docs/HISTORICAL_CHAIN_RECOVERY.md) — recovered snapshot identity, consensus reconstruction and validation;
 - [`docs/EVIDENCE_REGISTER.md`](docs/EVIDENCE_REGISTER.md) — evidence provenance and verification status;
 - [`docs/MINING_EVIDENCE.md`](docs/MINING_EVIDENCE.md) — mining and proof-of-work evidence;
 - [`docs/RUNTIME_NETWORK_EVIDENCE.md`](docs/RUNTIME_NETWORK_EVIDENCE.md) — original runtime network/consensus fingerprints;
@@ -187,7 +202,7 @@ The public evidence set currently includes:
 
 The reconstructed node validates the recovered historical ledger from genesis through block 175168.
 
-A clean reconstruction build was used to perform fresh full reindexes on three separate machines. All three independently reached the exact same authenticated tip with no consensus rejection.
+A clean reconstruction build was used to perform fresh full reindexes on three separate project-controlled machines. All three reached the exact same authenticated tip with no consensus rejection. Independent third-party reproduction remains an explicit open milestone rather than a completed claim.
 
 Two public archival/discovery endpoints are operating:
 
@@ -205,6 +220,8 @@ The current inherited Bitcoin testnet configuration is **not** treated as histor
 ## How to help
 
 The most useful contribution now is evidence that may extend or independently corroborate the recovered chain: later blockchain data, archived public source material, old installation packages, historical node information, block explorers, transaction records or verifiable technical documentation.
+
+Independent reviewers are also invited to follow [`docs/INDEPENDENT_REPRODUCTION.md`](docs/INDEPENDENT_REPRODUCTION.md) and [Issue #3](https://github.com/Xnuva-Blockchain-Project/AMLToken-Revival/issues/3) as the self-contained replay package is completed.
 
 If you still have an old wallet, start with the [simple connection guide](docs/OLD_WALLET_CONNECTION_GUIDE.md). Please use [GitHub Issue #2](https://github.com/Xnuva-Blockchain-Project/AMLToken-Revival/issues/2) for non-private historical-chain evidence or leads. **Do not attach wallet files or private keys.**
 
