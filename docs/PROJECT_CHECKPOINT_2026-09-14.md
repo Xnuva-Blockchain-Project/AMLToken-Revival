@@ -100,6 +100,14 @@ The current reconstructed mainnet discovery baseline is:
 
 The final discovery rules are recorded in [`NETWORK_REVIVAL_POLICY.md`](NETWORK_REVIVAL_POLICY.md).
 
+### Non-mainnet warning
+
+The evidence-backed reconstruction is currently a **mainnet reconstruction**.
+
+The source tree still contains inherited upstream Bitcoin testnet configuration, including upstream Bitcoin testnet seed material. That has not been established as historical AMLToken testnet identity. It must not be treated as AMLToken historical evidence, and `-testnet` should not be used for AMLToken historical validation until AMLToken-specific testnet evidence is recovered.
+
+Regtest remains an engineering environment only and is not historical mainnet evidence.
+
 ## Evidence checkpoints
 
 Important local evidence reports and hashes at this checkpoint:
@@ -148,6 +156,7 @@ Unless contradictory primary evidence is recovered, the following should be trea
 6. Do not mine or publish a replacement production chain from genesis.
 7. Do not represent wallet-local transaction records as independently chain-confirmed while the historical post-genesis chain remains missing.
 8. Do not request or publish holder private keys, seed phrases, passphrases, wallet files or private-key dumps.
+9. Do not treat the inherited upstream Bitcoin testnet configuration as historical AMLToken testnet evidence.
 
 ## Principal unresolved blocker
 
