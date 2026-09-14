@@ -37,9 +37,13 @@ After those evidence-derived rules were restored, a fresh reindex accepted the r
 
 ## Independent validation
 
-The complete snapshot was independently reindexed on two separate machines using the same clean reconstruction build.
+The complete snapshot was independently reindexed on **three separate machines** using the same clean reconstruction build:
 
-Both validations independently reproduced:
+- the reconstruction/development host;
+- the T620 archival node host;
+- the Contabo secondary archival node host.
+
+All three validations independently reproduced:
 
 ```text
 blocks:  175168
@@ -49,23 +53,27 @@ bestblockhash: 000000008be329b7f5186e61c86367ece62db781374cc7c4fee46ba296b40025
 
 The historical raw block file remained byte-for-byte unchanged during validation.
 
-## Public archival/discovery node
+## Public archival/discovery nodes
 
-A walletless, non-mining public node now serves the validated snapshot at:
+Two walletless, non-mining public nodes now serve the validated snapshot on separate networks:
 
 ```text
-81.130.208.151:23247
+Primary (T620):        81.130.208.151:23247
+Secondary (Contabo):  84.247.164.62:23247
 ```
 
 Compatible historical AMLToken nodes may connect with:
 
 ```text
 addnode=81.130.208.151:23247
+addnode=84.247.164.62:23247
 ```
 
-The endpoint has been externally verified as reachable from an independent Internet host.
+Both endpoints have been externally verified as reachable from the other network.
 
-The live node uses a working copy. A separate canonical validated snapshot is preserved so later peer activity cannot alter the archival evidence.
+Each public node uses a working copy. Separate canonical validated snapshots are preserved so later peer activity cannot alter the archival evidence.
+
+The public nodes are independent recovery endpoints rather than authorities for one another. Later data received by either node remains candidate continuation evidence until separately preserved and validated.
 
 ## Important boundary
 
