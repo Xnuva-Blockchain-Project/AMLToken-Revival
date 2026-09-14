@@ -1,7 +1,7 @@
 # AMLToken Revival — Public Technical Preview
 
 **Release date:** 14 September 2026  
-**Updated:** 14 September 2026 following historical-chain recovery
+**Updated:** 14 September 2026 following historical-chain recovery and redundant public-node deployment
 
 ## What this release is
 
@@ -22,12 +22,12 @@ The project has established and documented:
 - historical wallet-format compatibility with the preserved original client;
 - recovered original AMLToken monetary and coinbase-maturity rules from preserved binary evidence;
 - an authenticated historical raw block stream from genesis through height **175168**;
-- fresh end-to-end reindex validation of that snapshot on two separate machines;
-- exact reproduction of the same historical tip on both systems;
+- fresh end-to-end reindex validation of that snapshot on three separate machines;
+- exact reproduction of the same historical tip on all three systems;
 - a historical `PeerAllowed()` authorization mechanism tied to a 13-entry authorized-peer table;
 - five direct `PeerAllowed()` call sites covering outbound connection progression, eviction/retention, address handling, block handling and compact-block handling;
 - an evidence-backed revival policy that removes the historical peer-authorization dependency without changing genesis, historical ownership or consensus validity;
-- a public walletless, non-mining archival/discovery node serving the validated snapshot.
+- two public walletless, non-mining archival/discovery nodes on separate networks serving the validated snapshot.
 
 ## Historical chain recovery update
 
@@ -45,21 +45,24 @@ The preserved raw block file used for validation has SHA256:
 77b005775f3d87429571a52b491aeadd0787b3350b3b96249fb1a169964cbf03
 ```
 
-Fresh reindexes on two independent machines reached the same height and tip without consensus rejection.
+Fresh reindexes on three independent machines reached the same height and tip without consensus rejection.
 
 See `docs/HISTORICAL_CHAIN_RECOVERY.md` for the technical recovery record.
 
-## Public archival/discovery node
+## Public archival/discovery nodes
 
-The validated snapshot is now served by a walletless, non-mining public node at:
+The validated snapshot is now served by two walletless, non-mining public nodes on separate networks:
 
 ```text
-81.130.208.151:23247
+Primary (T620):        81.130.208.151:23247
+Secondary (Contabo):  84.247.164.62:23247
 ```
 
-The endpoint has been externally verified as reachable from an independent Internet host.
+Both endpoints have been externally verified as reachable from the other network.
 
-A separate canonical snapshot is preserved independently from the live working datadir so later P2P activity cannot alter the archival baseline.
+Separate canonical snapshots are preserved independently from the live working datadirs so later P2P activity cannot alter the archival baseline.
+
+The nodes are independent recovery endpoints. Candidate later history received by either node must still be preserved and independently validated before it is accepted as authenticated history.
 
 ## Why the peer-control evidence matters
 
