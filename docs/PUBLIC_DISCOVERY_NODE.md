@@ -58,6 +58,14 @@ Please preserve your existing data directory before making changes. Work from a 
 
 Any later headers or blocks supplied by a peer must still pass normal chain-continuity and consensus validation before they can be treated as authenticated historical ledger data.
 
+### Simple guide for old wallet holders
+
+If you still have an old AMLToken/ABTC wallet but are not familiar with data folders, configuration files or `addnode` settings, follow the step-by-step holder guide:
+
+**[Old AMLToken / ABTC Wallet — Simple Connection Guide](OLD_WALLET_CONNECTION_GUIDE.md)**
+
+It explains where the AMLToken data folder is normally found on Windows, Linux and macOS, how to back it up safely, how to add both recovery nodes, and what private wallet information must never be shared.
+
 ## Redundancy and independence
 
 The primary T620 node and secondary Contabo node operate on separate networks.
@@ -106,6 +114,7 @@ No received continuation will be declared authoritative merely because it is lon
 
 See also:
 
+- [`OLD_WALLET_CONNECTION_GUIDE.md`](OLD_WALLET_CONNECTION_GUIDE.md)
 - [`HISTORICAL_CHAIN_RECOVERY.md`](HISTORICAL_CHAIN_RECOVERY.md)
 - [`CHAIN_IDENTITY.md`](CHAIN_IDENTITY.md)
 - [`GENESIS_REPRODUCTION.md`](GENESIS_REPRODUCTION.md)
