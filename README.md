@@ -42,29 +42,31 @@ The preserved raw historical block file used for validation has SHA256:
 77b005775f3d87429571a52b491aeadd0787b3350b3b96249fb1a169964cbf03
 ```
 
-Fresh full reindexes on two separate machines independently reproduced the same height, tip and genesis without consensus rejection.
+Fresh full reindexes on **three separate machines** independently reproduced the same height, tip and genesis without consensus rejection.
 
 See [`docs/HISTORICAL_CHAIN_RECOVERY.md`](docs/HISTORICAL_CHAIN_RECOVERY.md) for the recovery and validation record.
 
-## Public historical-chain archival/discovery node
+## Public historical-chain archival/discovery nodes
 
-A public, walletless and non-mining AMLToken recovery node is available at:
+Two public, walletless and non-mining AMLToken recovery nodes are now available on separate networks:
 
 ```text
-81.130.208.151:23247
+Primary (T620):        81.130.208.151:23247
+Secondary (Contabo):  84.247.164.62:23247
 ```
 
-It now serves the validated historical snapshot through block **175168** and remains available for compatible historical AMLToken nodes that may possess later chain data.
+Both serve the validated historical snapshot through block **175168** and remain available for compatible historical AMLToken nodes that may possess later chain data.
 
-Surviving historical AMLToken nodes may connect using:
+Surviving historical AMLToken nodes may connect to either endpoint using:
 
 ```text
 addnode=81.130.208.151:23247
+addnode=84.247.164.62:23247
 ```
 
-The endpoint has been externally verified as reachable from an independent Internet host.
+Both endpoints have been externally verified as reachable from the other network.
 
-Any later headers or blocks received from a peer must still pass normal consensus and continuity checks before being treated as authenticated historical chain data.
+The two public nodes are operated independently. Later peer-supplied data is candidate continuation evidence until it has been preserved and independently validated; a longer chain is not accepted as historical truth merely because it was received over P2P.
 
 See [`docs/PUBLIC_DISCOVERY_NODE.md`](docs/PUBLIC_DISCOVERY_NODE.md) for current node status, connection guidance and safety notes.
 
@@ -80,7 +82,8 @@ Evidence-led reconstruction has established:
 - the strongest known Bitcoin Core upstream baseline used by the original software;
 - the original AMLToken monetary limits, subsidy behaviour and 20-block coinbase maturity from preserved binary evidence;
 - an authenticated raw historical blockchain from genesis through height 175168;
-- end-to-end independent validation of that snapshot on two separate machines;
+- end-to-end independent validation of that snapshot on three separate machines;
+- two independently reachable public archival/discovery nodes on separate networks;
 - an historical operator-defined peer-control mechanism based on `PeerAllowed()` and `pnSeed6_authorized`;
 - exactly five direct `PeerAllowed()` call sites affecting outbound connection progression, eviction/retention treatment, address-message processing, block-message processing and compact-block processing;
 - a decentralized revival networking path in which ordinary compatible peers can complete a full protocol-70015 handshake without the historical authorization gate.
@@ -155,20 +158,27 @@ The public evidence set currently includes:
 - [`docs/RUNTIME_NETWORK_EVIDENCE.md`](docs/RUNTIME_NETWORK_EVIDENCE.md) — original runtime network/consensus fingerprints;
 - [`docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md`](docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md) — recovered authorized-peer mechanism and call-site analysis;
 - [`docs/NETWORK_REVIVAL_POLICY.md`](docs/NETWORK_REVIVAL_POLICY.md) — decentralized revival networking policy;
-- [`docs/PUBLIC_DISCOVERY_NODE.md`](docs/PUBLIC_DISCOVERY_NODE.md) — public historical-chain endpoint and connection guidance;
+- [`docs/PUBLIC_DISCOVERY_NODE.md`](docs/PUBLIC_DISCOVERY_NODE.md) — public historical-chain endpoints and connection guidance;
 - [`docs/UPSTREAM_BASELINE.md`](docs/UPSTREAM_BASELINE.md) — strongest identified upstream Bitcoin Core baseline;
 - [`docs/RECONSTRUCTION_POLICY.md`](docs/RECONSTRUCTION_POLICY.md) — holder-protection and continuity rules;
 - [`docs/PROJECT_CHECKPOINT_2026-09-14.md`](docs/PROJECT_CHECKPOINT_2026-09-14.md) — earlier project checkpoint preserved as a dated record.
 
 ## Current engineering status
 
-The reconstructed node now validates the recovered historical ledger from genesis through block 175168.
+The reconstructed node validates the recovered historical ledger from genesis through block 175168.
 
-A clean reconstruction build was used to perform fresh full reindexes on two separate machines. Both independently reached the exact same authenticated tip with no consensus rejection.
+A clean reconstruction build was used to perform fresh full reindexes on three separate machines. All three independently reached the exact same authenticated tip with no consensus rejection.
 
-A public archival/discovery endpoint is operating at `81.130.208.151:23247`. It is walletless, non-mining and serves a working copy of the validated snapshot. A separate canonical snapshot is retained as archival evidence so later P2P activity cannot alter the recovered baseline.
+Two public archival/discovery endpoints are operating:
 
-Mainnet discovery seeds are not being invented as a substitute for historical evidence. The public node accepts compatible inbound connections, while later chain data remains subject to independent preservation and validation.
+```text
+81.130.208.151:23247
+84.247.164.62:23247
+```
+
+They are walletless, non-mining and serve working copies of the validated snapshot. Separate canonical snapshots are retained as archival evidence so later P2P activity cannot alter the recovered baseline.
+
+Mainnet discovery seeds are not being invented as a substitute for historical evidence. The public nodes accept compatible inbound connections, while later chain data remains subject to independent preservation and validation.
 
 The current inherited Bitcoin testnet configuration is **not** treated as historical AMLToken testnet identity.
 
