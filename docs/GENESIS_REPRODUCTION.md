@@ -2,6 +2,8 @@
 
 This document records a deterministic reproduction of the original AMLToken mainnet genesis block using runtime data obtained from the preserved 2018 AMLToken client.
 
+The genesis belongs to the historical native **AMLToken/ABTC precursor chain** recovered by this project. Reproducing it does not establish that the later advertised AML Bitcoin system or its proprietary biometric/AML/KYC features were completed. See [`SCOPE_AND_TERMINOLOGY.md`](SCOPE_AND_TERMINOLOGY.md).
+
 ## Runtime inputs
 
 | Field | Value |
@@ -79,11 +81,13 @@ The coinbase script contains the exact 65-byte historical message:
 The Times 18/Sep/2017 Google Joins India's cashless payments rush
 ```
 
-The serialized integer output value is recorded as **100 base units** only. Its human-readable ABTC denomination should not be inferred until the historical monetary-unit constant is independently verified.
+Subsequent binary analysis established the historical monetary unit as `COIN = 100000000`, so the serialized genesis output of 100 base units corresponds to **0.00000100 ABTC**. The raw serialized value remains the primary evidence.
 
-## Proof-of-work caution
+## Proof-of-work status
 
-This result proves the block-header identifier hash. It is very strong evidence for Bitcoin-style SHA-256d Proof of Work, especially because static inspection has not revealed a separate `GetPoWHash` or scrypt path. However, the project will keep the broader production PoW algorithm formally pending until the historical proof-of-work validation path is independently identified or reproduced.
+The original block-header hash reproduction established SHA-256d at genesis. Subsequent focused static analysis of the preserved AMLToken-Qt binary identified the standard Bitcoin-Core `GetNextWorkRequired`, `CalculateNextWorkRequired` and `CheckProofOfWork` path, with no alternate `GetPoWHash`, scrypt or X11 path. Full reindex validation of the recovered historical chain further corroborated that consensus path.
+
+Accordingly, the historical AMLToken/ABTC precursor chain's proof of work is now treated as **Bitcoin-style SHA-256d with the recovered Bitcoin-Core-style difficulty algorithm**. See [`MINING_EVIDENCE.md`](MINING_EVIDENCE.md).
 
 No consensus parameter should be changed merely to make mining convenient.
 
