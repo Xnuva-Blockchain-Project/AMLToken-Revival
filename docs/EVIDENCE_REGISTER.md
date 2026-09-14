@@ -1,6 +1,6 @@
 # Evidence Register
 
-This register tracks the technical evidence currently supporting AMLToken reconstruction.
+This register tracks the technical evidence currently supporting AMLToken reconstruction and historical-chain recovery.
 
 ## E-001 — Original Windows client
 
@@ -28,20 +28,22 @@ This register tracks the technical evidence currently supporting AMLToken recons
 
 - Height: `0`
 - Hash: `00000000230d6b389555e80e4523a32343531448ddd15fbc29c0fdc11dbb1538`
-- Source: direct RPC query against the preserved v1.3.0 client in a fresh isolated datadir
+- Source: direct RPC query against the preserved v1.3.0 client in a fresh isolated datadir, subsequently reproduced from recovered block history
 - State: **VERIFIED**
 
 ## E-005 — Mainnet parameters recovered from binary analysis
 
-Static analysis of the preserved Linux binary yielded:
+Static analysis of the preserved Linux binary yielded and later validation corroborated:
 
 - `nTime`: `0x59bfb540` (`1505736000`)
 - `nBits`: `0x1d00ffff`
 - `nNonce`: `0x284c21bb` (`676078011`)
 - message start: `0d 1c 81 52`
-- candidate mainnet port: `0x5acf` (`23247`)
+- mainnet P2P port: `23247`
 
-State: **EXTRACTED**. Runtime or historical block-data confirmation is still required where noted in `CHAIN_IDENTITY.md`.
+State: **VERIFIED / CORROBORATED**.
+
+See [`CHAIN_IDENTITY.md`](CHAIN_IDENTITY.md) and [`RUNTIME_NETWORK_EVIDENCE.md`](RUNTIME_NETWORK_EVIDENCE.md).
 
 ## E-006 — Historical wallet compatibility
 
@@ -147,10 +149,114 @@ Evidence:
 
 State: **VERIFIED RECONSTRUCTION BASELINE**
 
-The empty mainnet seed lists are intentional while historical chain recovery remains unresolved. Future seed infrastructure must be documented as revival discovery infrastructure and must not recreate peer authorization or special consensus/network privileges.
+The empty mainnet seed lists are intentional during historical recovery. Future seed infrastructure must be documented as revival discovery infrastructure and must not recreate peer authorization or special consensus/network privileges.
 
 See [`NETWORK_REVIVAL_POLICY.md`](NETWORK_REVIVAL_POLICY.md).
 
-## Current evidence gap
+## E-013 — Recovered historical raw blockchain through height 175168
 
-The principal unresolved item is surviving post-genesis ABTC blockchain data. A complete historical block sequence has not yet been recovered. Until it is, wallet-local transaction records must not be represented as independently chain-confirmed balances.
+A preserved historical AMLToken data source yielded a raw block stream containing 175169 block records, beginning at the authentic AMLToken genesis and extending through height `175168`.
+
+Recovered state:
+
+```text
+height: 175168
+genesis: 00000000230d6b389555e80e4523a32343531448ddd15fbc29c0fdc11dbb1538
+bestblockhash: 000000008be329b7f5186e61c86367ece62db781374cc7c4fee46ba296b40025
+chainwork: 00000000000000000000000000000000000000000000000000048f2b9dfa1d51
+```
+
+Preserved raw historical block file:
+
+```text
+SHA-256: 77b005775f3d87429571a52b491aeadd0787b3350b3b96249fb1a169964cbf03
+```
+
+State: **VERIFIED HISTORICAL BLOCK DATA THROUGH HEIGHT 175168**
+
+Important boundary: height 175168 is the latest authenticated snapshot currently recovered. It is not claimed as the final historical network tip.
+
+See [`HISTORICAL_CHAIN_RECOVERY.md`](HISTORICAL_CHAIN_RECOVERY.md).
+
+## E-014 — Historical monetary rules and coinbase maturity recovered from original binary
+
+Validation of the recovered block history exposed inherited Bitcoin rules that did not match AMLToken history. The original AMLToken-Qt v1.3.0 binary was used to recover the historical rules rather than weakening validation.
+
+Recovered rules include:
+
+- `MAX_MONEY = 200,000,000 * COIN`;
+- special height-1 subsidy/allocation of `145,000,000 * COIN`;
+- non-height-1 subsidy of 100 base units while the subsidy-interval quotient is at most 63, then zero;
+- subsidy interval `800000`;
+- `COINBASE_MATURITY = 20` blocks.
+
+State: **VERIFIED BINARY-DERIVED CONSENSUS RULES, CORROBORATED BY FULL REINDEX**
+
+## E-015 — Three-machine full-reindex validation
+
+The complete historical snapshot was freshly reindexed on three separate project-controlled machines using the same clean reconstruction codebase:
+
+- reconstruction/development host;
+- T620 archival-node host;
+- Contabo secondary archival-node host.
+
+Each run independently reached height `175168`, the same genesis, the same best block hash and the same chainwork without consensus rejection.
+
+Clean reconstruction source commit used for the validated build:
+
+```text
+8b821d120b6331cb9ac83c764863e032f567b776
+```
+
+Clean build hashes:
+
+```text
+bitcoind:    28bf755af53c784b3ab47d7838c65952d6a97031d103006cf58f893edb4f1aae
+bitcoin-cli: 5ca9888fbfd9002fe88d0e441a729f1e5c333c573bb7ff8ef47312b42417bfc0
+```
+
+State: **VERIFIED PROJECT-CONTROLLED MULTI-HOST REPRODUCTION**
+
+This is deliberately not described as independent third-party replication because all three machines were operated by the project.
+
+## E-016 — Two public archival/discovery nodes
+
+Two walletless, non-mining public AMLToken recovery nodes operate on separate networks:
+
+```text
+81.130.208.151:23247
+84.247.164.62:23247
+```
+
+Both were externally verified as reachable from the other network and serve working copies of the authenticated historical snapshot.
+
+State: **VERIFIED PUBLIC RECOVERY INFRASTRUCTURE**
+
+See [`PUBLIC_DISCOVERY_NODE.md`](PUBLIC_DISCOVERY_NODE.md).
+
+## E-017 — Public independent-reproduction framework
+
+The project has published an explicit standard for third-party reproduction.
+
+Current status:
+
+- project-controlled three-machine reproduction: **COMPLETE**;
+- full public outsider replay from GitHub alone: **NOT YET COMPLETE**;
+- independent unaffiliated reproduction: **NOT YET CLAIMED**.
+
+Two public artefacts remain required for a self-contained replay:
+
+1. the exact clean reconstruction source tree corresponding to commit `8b821d120b6331cb9ac83c764863e032f567b776`;
+2. the preserved public historical `blk00000.dat` with SHA-256 `77b005775f3d87429571a52b491aeadd0787b3350b3b96249fb1a169964cbf03`.
+
+State: **OPEN REPRODUCIBILITY MILESTONE**
+
+See [`INDEPENDENT_REPRODUCTION.md`](INDEPENDENT_REPRODUCTION.md) and [GitHub Issue #3](https://github.com/Xnuva-Blockchain-Project/AMLToken-Revival/issues/3).
+
+## Current evidence gaps
+
+The principal historical-chain gap is surviving genuine AMLToken blockchain data later than height **175168**. That height is the latest authenticated snapshot currently recovered, not a claimed final network tip.
+
+The principal reproducibility gap is publication of the exact clean reconstruction source tree and preserved public historical raw block file so an unaffiliated reviewer can perform a complete end-to-end replay without trusting project-operated machines.
+
+Until that external replay occurs, the project will distinguish clearly between **project-controlled multi-host validation** and **independent third-party reproduction**.
