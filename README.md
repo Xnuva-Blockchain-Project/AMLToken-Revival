@@ -28,11 +28,15 @@ The project rule is simple:
 
 ## AML Bitcoin, AMLToken and ABTC — important clarification
 
-The ticker **ABTC** is ambiguous and is also used by unrelated modern projects. AMLToken Revival concerns the **original native AMLToken/ABTC blockchain** recovered from preserved historical software and blockchain data. It is not an ERC-20 or BEP-20 replacement token.
+The ticker **ABTC** is ambiguous and is also used by unrelated modern projects. AMLToken Revival concerns the **original native AMLToken/ABTC precursor blockchain** recovered from preserved historical software and blockchain data. It is not an ERC-20 or BEP-20 replacement token.
 
 The project is independent of the former AML Bitcoin / AMLToken operators and NAC Foundation. It does not dispute or minimise the criminal proceedings connected with the original project's management, and it makes **no claim that ABTC currently has a liquid market price or active exchange market**.
 
-The legal history, ticker confusion and technical chain identity are explained separately here:
+There is also an important historical distinction between the chain recovered here and the later system marketed as **AML Bitcoin**. The SEC's 2020 complaint states that purchasers would first receive tradable ABTC tokens that did not have the advertised AML Bitcoin features and were told those tokens could later be exchanged one-for-one for functional AML Bitcoin tokens once a new blockchain and tokens were ready. The SEC separately alleged that the touted AML Bitcoin capabilities did not exist and that development of AML Bitcoin and its blockchain was still in a very early stage.
+
+Accordingly, recovery of the historical AMLToken/ABTC chain does **not** establish that the later advertised biometric, AML/KYC, anti-terrorism, theft-resistant or other proprietary AML Bitcoin technology was completed. Those claims are outside the recovered technical evidence and are not being revived or adopted by this project.
+
+The legal history, precursor-chain distinction, ticker confusion and technical chain identity are explained separately here:
 
 **[AML Bitcoin, AMLToken and ABTC — Identity and Historical Context](docs/ABTC_IDENTITY_AND_CONTEXT.md)**
 
@@ -182,7 +186,7 @@ Public addresses, transaction IDs, block hashes and non-private blockchain files
 
 The public evidence set currently includes:
 
-- [`docs/ABTC_IDENTITY_AND_CONTEXT.md`](docs/ABTC_IDENTITY_AND_CONTEXT.md) — clarification of AMLToken/ABTC chain identity, legal context, ticker confusion and unrelated modern ABTC tokens;
+- [`docs/ABTC_IDENTITY_AND_CONTEXT.md`](docs/ABTC_IDENTITY_AND_CONTEXT.md) — clarification of the historical AMLToken/ABTC precursor chain, the later advertised AML Bitcoin system, legal context, ticker confusion and unrelated modern ABTC tokens;
 - [`docs/OLD_WALLET_CONNECTION_GUIDE.md`](docs/OLD_WALLET_CONNECTION_GUIDE.md) — simple Windows/Linux/macOS instructions for old wallet holders who want to connect safely to the recovery nodes;
 - [`docs/INDEPENDENT_REPRODUCTION.md`](docs/INDEPENDENT_REPRODUCTION.md) — public reproducibility standard, expected hashes and the boundary between project-controlled validation and true third-party reproduction;
 - [`docs/CHAIN_IDENTITY.md`](docs/CHAIN_IDENTITY.md) — recovered chain identity and mainnet parameters;
@@ -229,14 +233,14 @@ If you still have an old wallet, start with the [simple connection guide](docs/O
 
 AMLToken Revival is an independent preservation project. It is **not affiliated with, endorsed by, or operated by** the original AMLToken, AML Bitcoin, NAC Foundation, or their former operators.
 
-For legal-history and ticker-identity clarification, see [`docs/ABTC_IDENTITY_AND_CONTEXT.md`](docs/ABTC_IDENTITY_AND_CONTEXT.md).
+For legal-history, precursor-chain and ticker-identity clarification, see [`docs/ABTC_IDENTITY_AND_CONTEXT.md`](docs/ABTC_IDENTITY_AND_CONTEXT.md).
 
 ## Release status
 
-This repository remains a **technical/evidence preview**. Recovery of an authenticated snapshot does not make this an invitation to trade, mine replacement history, deposit funds, or assume that height 175168 was the final historical network tip.
+This repository remains a **technical/evidence preview**. Recovery of an authenticated snapshot does not make this an invitation to trade, mine replacement history, deposit funds, assume that height 175168 was the final historical network tip, or treat the later advertised AML Bitcoin proprietary features as recovered technology.
 
 See [`RELEASE_NOTES_2026-09-14.md`](RELEASE_NOTES_2026-09-14.md) for the preview release summary and recovery update.
 
 ---
 
-**Preserve the evidence. Recover the history. Restore the network without rewriting ownership.**
+**Preserve the evidence. Recover the history. Restore the network without rewriting ownership or reviving unverified marketing claims.**
