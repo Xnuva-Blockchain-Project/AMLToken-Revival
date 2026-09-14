@@ -1,63 +1,17 @@
-# AMLToken Revival
+# AMLToken Revival — Legacy Working Branch
 
-AMLToken Revival is an independent preservation and recovery project for the original **AMLToken (ABTC)** blockchain.
+> **This branch is retained only as a historical/engineering record and is not authoritative for current project status or terminology.**
+>
+> Use the [`main` branch](https://github.com/Xnuva-Blockchain-Project/AMLToken-Revival) for current documentation.
 
-## Why this project exists
+The current project concerns the historical native **AMLToken/ABTC precursor chain** recovered from surviving C++ AMLToken software and block data. It does **not** claim to have recovered, completed or authenticated the later advertised AML Bitcoin system or its biometric, AML/KYC, anti-terrorism, theft-resistant or other proprietary features.
 
-The original AMLToken / AML Bitcoin operation ceased to provide a practical path for some historical purchasers and token holders to access, verify, or convert their holdings. Subsequent criminal fraud proceedings involving the original operation reinforced the need to preserve the technical record independently.
+Current terminology and scope:
 
-This project exists to help protect affected historical holders by preserving the original blockchain evidence and, where technically possible, restoring access to the original network without rewriting ownership.
+- [`SCOPE_AND_TERMINOLOGY.md`](https://github.com/Xnuva-Blockchain-Project/AMLToken-Revival/blob/main/docs/SCOPE_AND_TERMINOLOGY.md)
+- [`ABTC_IDENTITY_AND_CONTEXT.md`](https://github.com/Xnuva-Blockchain-Project/AMLToken-Revival/blob/main/docs/ABTC_IDENTITY_AND_CONTEXT.md)
+- [`HISTORICAL_CHAIN_RECOVERY.md`](https://github.com/Xnuva-Blockchain-Project/AMLToken-Revival/blob/main/docs/HISTORICAL_CHAIN_RECOVERY.md)
 
-This is **not a new token launch** and it is not an attempt to create replacement balances for old holders.
+The authenticated precursor-chain snapshot currently reaches height **175168**. That height is not claimed as the final historical network tip. The three completed full reindexes are project-controlled multi-host validation, not independent third-party reproduction.
 
-## Preservation rule
-
-**Same genesis. Same historical ledger. Same ownership.**
-
-The project will not:
-
-- create a replacement genesis block;
-- arbitrarily issue coins or recreate balances by hand;
-- rewrite legitimate historical transactions;
-- require holders to surrender private keys in order to establish ownership;
-- present a reconstructed chain as original unless its historical continuity can be demonstrated.
-
-Any unavoidable forward-only repair or modernisation must be documented and must not retroactively alter legitimate historical ownership.
-
-## Recovery objective
-
-The immediate objective is to reconstruct enough of the original AMLToken Core software and chain parameters to reproduce the historical network exactly, beginning with the known original mainnet genesis block:
-
-```text
-00000000230d6b389555e80e4523a32343531448ddd15fbc29c0fdc11dbb1538
-```
-
-From there, the project will attempt to locate or reconstruct surviving historical blockchain data, validate original transactions, and determine whether the original ledger can be brought back into service without creating a new chain.
-
-## Reconstruction records
-
-Work on the `reconstruction` branch is evidence-led. The current records are:
-
-- [`docs/CHAIN_IDENTITY.md`](docs/CHAIN_IDENTITY.md) — verified chain identity and parameters recovered from original software;
-- [`docs/GENESIS_REPRODUCTION.md`](docs/GENESIS_REPRODUCTION.md) — byte-level genesis reconstruction and deterministic hash reproduction;
-- [`docs/EVIDENCE_REGISTER.md`](docs/EVIDENCE_REGISTER.md) — provenance and evidence status for preserved artefacts;
-- [`docs/MINING_EVIDENCE.md`](docs/MINING_EVIDENCE.md) — mining RPC behaviour and what remains unverified;
-- [`docs/RUNTIME_NETWORK_EVIDENCE.md`](docs/RUNTIME_NETWORK_EVIDENCE.md) — original protocol, network and consensus-deployment runtime fingerprints;
-- [`docs/UPSTREAM_BASELINE.md`](docs/UPSTREAM_BASELINE.md) — evidence identifying the strongest known Bitcoin Core upstream baseline candidate;
-- [`docs/RECONSTRUCTION_POLICY.md`](docs/RECONSTRUCTION_POLICY.md) — holder-protection and consensus-continuity rules.
-
-Values that have not been established from surviving evidence are left unknown rather than guessed.
-
-## Holder safety
-
-Historical holders should **never publish or submit** wallet files, private keys, seed phrases, wallet passphrases, or private-key dumps.
-
-Public addresses, transaction IDs, block hashes and other public blockchain data may be used as evidence. Where ownership needs to be demonstrated, the preferred approach is cryptographic proof that does not expose private key material.
-
-## Independence
-
-AMLToken Revival is an independent preservation project. It is **not affiliated with, endorsed by, or operated by** the original AMLToken, AML Bitcoin, NAC Foundation, or their former operators.
-
-## Current status
-
-The repository is currently private while the original chain parameters, software behaviour and historical evidence are being reconstructed and verified. No public release or replacement network should be considered authoritative until the original chain identity and consensus behaviour have been reproduced and independently checked.
+**Same genesis. Same historical ledger. Same ownership. No inheritance of unverified AML Bitcoin marketing claims.**
