@@ -2,9 +2,9 @@
 
 > **Public Technical Preview — updated 14 September 2026**
 
-AMLToken Revival is an independent preservation and recovery project for the original **AMLToken (ABTC)** blockchain.
+AMLToken Revival is an independent preservation and recovery project for the historical native **AMLToken/ABTC precursor blockchain**.
 
-The project has now recovered and independently validated an authenticated historical AMLToken blockchain snapshot from the original mainnet genesis through block **175168**.
+The project has recovered and validated an authenticated historical AMLToken/ABTC snapshot from the original mainnet genesis through block **175168**, including fresh full reindexes on three separate project-controlled machines.
 
 This repository exists to preserve the technical evidence, document the reconstruction, help locate any later surviving historical chain data, and restore network access without rewriting historical ownership.
 
@@ -39,6 +39,8 @@ Accordingly, recovery of the historical AMLToken/ABTC chain does **not** establi
 The legal history, precursor-chain distinction, ticker confusion and technical chain identity are explained separately here:
 
 **[AML Bitcoin, AMLToken and ABTC — Identity and Historical Context](docs/ABTC_IDENTITY_AND_CONTEXT.md)**
+
+Repository-wide wording and terminology are governed by **[Scope and Terminology](docs/SCOPE_AND_TERMINOLOGY.md)**.
 
 ## Validated historical snapshot
 
@@ -186,6 +188,7 @@ Public addresses, transaction IDs, block hashes and non-private blockchain files
 
 The public evidence set currently includes:
 
+- [`docs/SCOPE_AND_TERMINOLOGY.md`](docs/SCOPE_AND_TERMINOLOGY.md) — canonical project scope and wording rules separating the historical AMLToken/ABTC precursor chain from the later advertised AML Bitcoin system;
 - [`docs/ABTC_IDENTITY_AND_CONTEXT.md`](docs/ABTC_IDENTITY_AND_CONTEXT.md) — clarification of the historical AMLToken/ABTC precursor chain, the later advertised AML Bitcoin system, legal context, ticker confusion and unrelated modern ABTC tokens;
 - [`docs/OLD_WALLET_CONNECTION_GUIDE.md`](docs/OLD_WALLET_CONNECTION_GUIDE.md) — simple Windows/Linux/macOS instructions for old wallet holders who want to connect safely to the recovery nodes;
 - [`docs/INDEPENDENT_REPRODUCTION.md`](docs/INDEPENDENT_REPRODUCTION.md) — public reproducibility standard, expected hashes and the boundary between project-controlled validation and true third-party reproduction;
