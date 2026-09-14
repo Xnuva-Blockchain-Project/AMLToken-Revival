@@ -21,6 +21,26 @@ The preservation rule is simple:
 
 **Same genesis. Same historical ledger. Same ownership.**
 
+## Public historical-chain discovery node
+
+A public, walletless and non-mining AMLToken recovery node is now available at:
+
+```text
+81.130.208.151:23247
+```
+
+Its sole purpose is to help locate surviving historical AMLToken peers and recover the legitimate post-genesis blockchain. The node currently remains deliberately at the recovered original genesis with `blocks: 0` and `headers: 0`; it does not mine or manufacture replacement history.
+
+Surviving historical AMLToken nodes may connect using:
+
+```text
+addnode=81.130.208.151:23247
+```
+
+Any historical headers or blocks received from a peer must still pass normal consensus and continuity checks before being treated as recovered chain history.
+
+See [`docs/PUBLIC_DISCOVERY_NODE.md`](docs/PUBLIC_DISCOVERY_NODE.md) for status, connection guidance and safety notes.
+
 ## What has been recovered
 
 Evidence-led reconstruction has established:
@@ -95,6 +115,7 @@ The public evidence set currently includes:
 - [`docs/RUNTIME_NETWORK_EVIDENCE.md`](docs/RUNTIME_NETWORK_EVIDENCE.md) — original runtime network/consensus fingerprints;
 - [`docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md`](docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md) — recovered authorized-peer mechanism and call-site analysis;
 - [`docs/NETWORK_REVIVAL_POLICY.md`](docs/NETWORK_REVIVAL_POLICY.md) — decentralized revival networking policy;
+- [`docs/PUBLIC_DISCOVERY_NODE.md`](docs/PUBLIC_DISCOVERY_NODE.md) — public historical-chain discovery endpoint and connection guidance;
 - [`docs/UPSTREAM_BASELINE.md`](docs/UPSTREAM_BASELINE.md) — strongest identified upstream Bitcoin Core baseline;
 - [`docs/RECONSTRUCTION_POLICY.md`](docs/RECONSTRUCTION_POLICY.md) — holder-protection and continuity rules;
 - [`docs/PROJECT_CHECKPOINT_2026-09-14.md`](docs/PROJECT_CHECKPOINT_2026-09-14.md) — project state at the September 2026 pause.
@@ -102,6 +123,8 @@ The public evidence set currently includes:
 ## Current engineering status
 
 The reconstructed node has reproduced the exact original genesis in an isolated environment. Two reconstructed nodes have also completed a full ordinary-peer handshake while remaining at height 0 and without mining any replacement history.
+
+A public historical-chain discovery endpoint is now operating at `81.130.208.151:23247`. It is walletless and non-mining and exists solely to accept compatible historical peers and recover legitimate chain data if any surviving node reconnects.
 
 Mainnet discovery seeds are deliberately left empty at this stage. We will not invent historical infrastructure or use new seed nodes as a substitute for recovering the legitimate chain.
 
