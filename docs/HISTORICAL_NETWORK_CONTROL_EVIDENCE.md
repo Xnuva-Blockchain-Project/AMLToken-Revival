@@ -102,19 +102,73 @@ Immediately afterwards it copies `pnSeed6_authorized` into the vector at offset 
 
 This establishes that the list consulted by `PeerAllowed()` is the historical `pnSeed6_authorized` table.
 
-## Connection-path effect
+## All direct `PeerAllowed()` call sites
 
-Separate disassembly of `CConnman::OpenNetworkConnection(...)` shows the historical AMLToken client calling `PeerAllowed()` before continuing through its normal outbound connection path.
+A complete static call-site sweep of the preserved binary found exactly **five direct calls** to `PeerAllowed()`.
 
-The result is used as a branch condition. An allowed peer continues through the permitted path; a peer that does not satisfy the check follows the rejection/non-normal path.
+DWARF line information resolves them to the following original AMLCore source locations:
 
-Additional calls to `PeerAllowed()` exist in peer-eviction and message-processing paths. These additional uses mean it would be unsafe to revive the network by changing `PeerAllowed()` to always return true: doing so could grant all peers special treatment that the original software reserved for entries in the authorized list.
+| Binary call address | Original function | Recovered source location | Control category |
+| --- | --- | --- | --- |
+| `0x1dcb12` | `CConnman::OpenNetworkConnection(...)` | `src/net.cpp:1982` | outbound connection access control |
+| `0x1e082a` | `CConnman::AttemptToEvictConnection()` | `src/net.cpp:963` | peer-eviction protection / privilege |
+| `0x20d043` | `ProcessMessage(...)` | `src/net_processing.cpp:1461` | address-message handling |
+| `0x2113c4` | `ProcessMessage(...)` | `src/net_processing.cpp:2393` | block-message handling |
+| `0x212b5e` | `ProcessMessage(...)` | `src/net_processing.cpp:1956` | compact-block handling |
 
-The evidence currently establishes an **outbound peer authorization gate**. It should not be overstated as proof that every inbound TCP connection was rejected directly at `AcceptConnection()`; that specific claim has not been established.
+The exact upstream Bitcoin Core baseline has no `PeerAllowed()` call at these locations. In the baseline, the corresponding regions are normal connection, eviction, `ADDR`, `BLOCK`, and `CMPCTBLOCK` processing. The authorization mechanism is therefore an AMLToken-specific addition rather than inherited Bitcoin behaviour.
+
+### 1. Outbound connection path
+
+At `CConnman::OpenNetworkConnection(...)`, the result of `PeerAllowed()` is used as a branch condition before the connection continues through the normal outbound path.
+
+This is the strongest access-control finding: the historical client did not simply use the authorized list as metadata. Membership affected whether an outbound peer could proceed normally.
+
+### 2. Peer-eviction path
+
+`CConnman::AttemptToEvictConnection()` also consults `PeerAllowed()`.
+
+The observed branch behaviour protects an authorized peer from the normal eviction-candidate path. This grants the authorized set preferential connection-retention treatment in addition to the ordinary Bitcoin eviction protections.
+
+This is one reason the revival must **not** implement decentralization by replacing `PeerAllowed()` with an unconditional `true`: doing so could accidentally grant every connected peer the historical privileged treatment.
+
+### 3. Address-message path
+
+A `PeerAllowed()` check occurs inside `ProcessMessage(...)` at the source region corresponding to Bitcoin's `ADDR` message processing.
+
+The AMLToken branch changes handling of network-address information according to authorized status. This demonstrates that authorization reached beyond initial connection establishment into peer-discovery/message behaviour.
+
+### 4. Block-message path
+
+A `PeerAllowed()` check occurs in the `BLOCK` processing region.
+
+Authorized status therefore influences the historical client's block-message processing path. The evidence establishes differentiated handling; it should not be described as a consensus exception. Nothing recovered so far shows that an authorized peer could make an otherwise consensus-invalid block valid.
+
+### 5. Compact-block path
+
+A fifth direct check occurs in the `CMPCTBLOCK` processing region.
+
+Again, authorization affects P2P processing policy. It does not establish that authorized peers could bypass proof-of-work or block-validity consensus rules.
+
+## What the five calls prove
+
+Taken together, the five direct uses show that the historical authorization list was not a passive bootstrap list. It was consulted in multiple networking-policy layers:
+
+- normal outbound connection progression;
+- peer-retention/eviction policy;
+- address propagation or intake handling;
+- block-message handling;
+- compact-block handling.
+
+This is materially more centralized than ordinary Bitcoin-style fixed-seed discovery because the same operator-defined authorization concept affected both access and subsequent peer treatment.
+
+The evidence currently establishes an **outbound peer authorization gate and additional authorized-peer networking privileges**. It should not be overstated as proof that every inbound TCP connection was rejected directly at `AcceptConnection()`; that specific claim has not been established.
+
+It also should not be overstated as proof of a consensus backdoor. The recovered calls are networking and message-processing policy controls, not evidence that invalid blocks or transactions could bypass consensus validation.
 
 ## Why this mattered to holders
 
-The historical software therefore depended on a small, explicitly defined authorized-peer set for normal outbound connectivity.
+The historical software therefore depended on a small, explicitly defined authorized-peer set for normal outbound connectivity and granted that set additional networking treatment.
 
 Because the ordinary fixed-seed table and the authorized table contain essentially the same 13 addresses, loss or shutdown of that infrastructure could leave a normal wallet unable to establish the expected peer connections even though its wallet file, private keys and historical transaction records remained intact.
 
@@ -179,15 +233,23 @@ SHA-256 a03e08d242d3b2dcb7ad7fbc68fb0b18e0c0bca1acc800bdd7a08d401d04731d
 
 amltoken-seed-mask-semantics.txt
 SHA-256 a0ecfec5eb65231a7cd3706eb00ab423f83bdc654eb652cfc6decc0830dc03df
+
+amltoken-peerallowed-all-call-sites-20260913_210817.txt
+SHA-256 e09b05f97e6b480cc98de8ad22a74dc62fa8594718beeda9c4ab6356e2f9371a
+
+amltoken-peerallowed-classification-20260914_120152.txt
+SHA-256 08f0cf425471d118c7440b21f84ccd03e7e3411668e3a217538873ce6149e219
 ```
 
 These hashes allow later comparison against the preserved working evidence without publishing holder-specific wallet material.
 
-## What remains unresolved
+## Remaining network-control questions
 
-Further forensic work is still required to determine the complete semantics of the custom `mask` field and every privilege associated with `PeerAllowed()` in the message-processing paths.
+The principal network-control architecture is now established: the authorized list, its 13 entries, its use by `PeerAllowed()`, the outbound gate, the eviction privilege, and the three message-processing call-site categories are all identified.
 
-Those unresolved details do not change the evidence already established: the original AMLToken client contained a separate authorized-peer list and consulted it as an active peer-access control in the outbound connection path.
+The custom `mask` field is passed into the `CService` constructor as a third 16-bit argument and is `128` in the recovered records. Its precise semantic purpose can be documented further if original source or additional symbol-level evidence is recovered, but that detail is not required to establish the authorization architecture.
+
+Likewise, lower-level branch semantics inside the three message-processing call sites can be refined later without changing the central finding: authorized status altered peer handling beyond ordinary connection establishment.
 
 ---
 
