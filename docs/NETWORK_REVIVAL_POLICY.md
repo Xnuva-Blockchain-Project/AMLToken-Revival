@@ -28,7 +28,7 @@ struct SeedSpec6 {
 
 Both historical arrays contain 13 entries. The main-network constructor copies `pnSeed6_authorized` into the chain-parameter vector at offset `+0x260`, and `PeerAllowed()` reads that same vector before performing a membership search over converted peer addresses.
 
-Separate disassembly shows `CConnman::OpenNetworkConnection()` invoking `PeerAllowed()` before continuing through the ordinary outbound connection path.
+Separate disassembly shows `CConnman::OpenNetworkConnection()` invoking `PeerAllowed()` before continuing through the ordinary outbound connection path. A complete direct-call sweep also located `PeerAllowed()` in peer-eviction, address-message, block-message and compact-block processing paths.
 
 The detailed forensic record is in [`HISTORICAL_NETWORK_CONTROL_EVIDENCE.md`](HISTORICAL_NETWORK_CONTROL_EVIDENCE.md).
 
@@ -37,6 +37,8 @@ The detailed forensic record is in [`HISTORICAL_NETWORK_CONTROL_EVIDENCE.md`](HI
 The revival SHALL NOT reproduce the historical requirement that ordinary peers must pass the operator-defined `PeerAllowed()` authorization test before establishing a normal outbound connection.
 
 Revived AMLToken nodes use an ordinary peer-to-peer connection path. Compatible peers do not require membership in a privileged authorization table.
+
+The historical authorization table is evidence only. It is not a permission list for the revival.
 
 This is a network-availability change only.
 
@@ -81,13 +83,46 @@ SHA-256:
 174b2764550ba6b9c9b8d8239aa8b5774b9a42f24cdd295b92ca3486d3ece3ab
 ```
 
-## Seed policy
+## Current discovery baseline
+
+A read-only audit of the reconstructed source confirmed the following mainnet state:
+
+- default AMLToken P2P port: `23247`;
+- no `PeerAllowed` symbol in the reconstructed source;
+- no `pnSeed6_authorized` symbol in the reconstructed source;
+- `vSeeds.clear()` for mainnet;
+- `vFixedSeeds.clear()` for mainnet;
+- ordinary manual peer connection support remains available through the inherited peer-to-peer connection path, including `-addnode`/`addnode` functionality.
+
+Evidence file:
+
+```text
+amlcore-discovery-baseline-20260914_122106.txt
+```
+
+SHA-256:
+
+```text
+b4957187a8132bb0a2d82bc2b5d45df2081ebc877a07a82ef251071a885284e3
+```
+
+The empty mainnet seed lists are deliberate at this reconstruction stage. They prevent undocumented or guessed discovery infrastructure from being represented as historical fact.
+
+## Decentralized discovery policy
 
 Historical seed infrastructure is preserved as forensic evidence, not reinstated as an authorization authority.
 
-Future revival seed nodes may be introduced as clearly documented discovery infrastructure. Seed operators must not receive consensus privileges or the ability to determine which otherwise-valid peers are permitted to participate.
+When revival discovery infrastructure is eventually introduced, the following rules apply:
 
-Direct `-addnode` connections and ordinary peer discovery must remain possible.
+1. Seed nodes provide discovery only. They do not determine which otherwise-valid peers may connect, relay, validate or participate.
+2. No revival seed receives consensus, eviction, block-processing, address-processing or compact-block privileges merely because it is a seed.
+3. Direct `-addnode`/`addnode` connections must remain possible without membership in any operator-controlled list.
+4. Discovery should use multiple independently operated endpoints where practical rather than recreate a single administrative dependency.
+5. Any new DNS or fixed seeds must be documented explicitly as **revival infrastructure**, not passed off as historical AMLToken data.
+6. Historical endpoints recovered from the original binary must not be silently reactivated or treated as authoritative simply because they appeared in the 2018 software.
+7. Public discovery infrastructure must not be activated as a substitute for recovering the legitimate historical chain.
+
+This separates two questions that must remain distinct: **how peers discover one another** and **which blockchain history is legitimate**.
 
 ## Production restriction
 
@@ -95,7 +130,7 @@ The revival must not begin mining or extending a replacement production chain fr
 
 Production operation requires recovery or independent verification of the legitimate historical AMLToken chain tip.
 
-Until then, networking tests must remain isolated or explicitly non-production.
+Until then, networking tests must remain isolated or explicitly non-production. Revival seed deployment may be designed and tested, but it must not be used to manufacture a new production history from height 0.
 
 ---
 
