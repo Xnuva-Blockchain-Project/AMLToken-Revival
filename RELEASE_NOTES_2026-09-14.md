@@ -11,6 +11,8 @@ The purpose of this release is to make the reconstruction work visible, document
 
 This is **not** a live replacement-chain launch, not a new token launch, and not a balance-migration event.
 
+Repository-wide wording is governed by `docs/SCOPE_AND_TERMINOLOGY.md`.
+
 ## Historical scope clarification
 
 The chain recovered by this project is the **historical AMLToken/ABTC precursor chain** represented by surviving software and block data.
@@ -44,7 +46,7 @@ The project has established and documented:
 
 ## Historical chain recovery update
 
-An authenticated AMLToken blockchain snapshot has now been recovered and validated through:
+An authenticated AMLToken/ABTC precursor-chain snapshot has now been recovered and validated through:
 
 ```text
 height: 175168
@@ -84,7 +86,7 @@ Until that happens, the project will describe the current result as **project-co
 
 ## Public archival/discovery nodes
 
-The validated snapshot is now served by two walletless, non-mining public nodes on separate networks:
+The validated precursor-chain snapshot is now served by two walletless, non-mining public nodes on separate networks:
 
 ```text
 Primary (T620):        81.130.208.151:23247
@@ -110,9 +112,9 @@ The technical record is published in:
 
 ## What is still missing
 
-Block **175168 is the latest authenticated snapshot currently recovered**. It is not being claimed as the final historical AMLToken network tip.
+Block **175168 is the latest authenticated snapshot currently recovered**. It is not being claimed as the final historical AMLToken/ABTC precursor-chain tip.
 
-The main remaining recovery target is therefore historical data **later than height 175168**.
+The main remaining recovery target is therefore historical precursor-chain data **later than height 175168**.
 
 The main remaining reproducibility target is publication of the exact clean reconstruction source tree and preserved public historical raw block file so an unaffiliated reviewer can replay the recovery without trusting project-operated machines.
 
@@ -128,7 +130,7 @@ The project will not:
 
 ## Call for later historical data
 
-Anyone who ran AMLToken in the original period may have useful chain evidence on an old PC, drive, backup, exchange node, pool server or VPS image.
+Anyone who ran AMLToken in the original period may have useful precursor-chain evidence on an old PC, drive, backup, exchange node, pool server or VPS image.
 
 Potentially useful non-private material includes:
 
@@ -147,4 +149,4 @@ Potentially useful non-private material includes:
 
 **Same genesis. Same historical ledger. Same ownership.**
 
-The goal is recovery and preservation, not replacement or revival of unverified marketing claims.
+The goal is recovery and preservation of the real precursor chain, not replacement or revival of unverified marketing claims.
