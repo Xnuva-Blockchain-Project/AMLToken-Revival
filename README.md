@@ -38,16 +38,16 @@ From there, the project will attempt to locate or reconstruct surviving historic
 
 Static analysis of the preserved original AMLToken-Qt v1.3.0 Linux client has established that the historical software contained a separate **authorized-peer table** and an active `PeerAllowed()` membership check used in the outbound connection path.
 
-The original mainnet constructor loaded both a normal 13-entry seed table and a separate 13-entry authorized table. The two tables contained essentially the same endpoint set. This created a dependency on a small operator-defined peer infrastructure for normal outbound connectivity.
+The original mainnet constructor loaded both a normal 13-entry seed table and a separate 13-entry authorized table. The two tables contained essentially the same endpoint set. A complete direct-call sweep also established `PeerAllowed()` use in peer-retention/eviction, address-message, block-message and compact-block processing paths.
 
 The revival does **not** reproduce that centralized peer-authorization requirement. This networking repair is documented separately from consensus reconstruction and does not authorize any change to genesis, historical transactions, balances or ownership.
 
 Full technical evidence:
 
-- [`docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md`](docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md) — recovered authorized-peer tables, `PeerAllowed()` disassembly and mainnet constructor mapping;
-- [`docs/NETWORK_REVIVAL_POLICY.md`](docs/NETWORK_REVIVAL_POLICY.md) — why the revival removes the historical peer gate while preserving the original ledger and consensus identity.
+- [`docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md`](docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md) — recovered authorized-peer tables, `PeerAllowed()` disassembly, call-site classification and mainnet constructor mapping;
+- [`docs/NETWORK_REVIVAL_POLICY.md`](docs/NETWORK_REVIVAL_POLICY.md) — why the revival removes the historical peer gate and how decentralized discovery must work while preserving the original ledger and consensus identity.
 
-The evidence establishes the mechanism and its effect on connectivity. It does not attempt to infer developer motive beyond what the preserved binary proves.
+The evidence establishes the mechanism and its effect on connectivity and peer treatment. It does not attempt to infer developer motive beyond what the preserved binary proves, and it does not establish a consensus bypass.
 
 ## Reconstruction records
 
@@ -59,7 +59,8 @@ Work on the `reconstruction` branch is evidence-led. The current records are:
 - [`docs/MINING_EVIDENCE.md`](docs/MINING_EVIDENCE.md) — mining RPC behaviour and what remains unverified;
 - [`docs/RUNTIME_NETWORK_EVIDENCE.md`](docs/RUNTIME_NETWORK_EVIDENCE.md) — original protocol, network and consensus-deployment runtime fingerprints;
 - [`docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md`](docs/HISTORICAL_NETWORK_CONTROL_EVIDENCE.md) — evidence of the historical authorized-peer access-control mechanism;
-- [`docs/NETWORK_REVIVAL_POLICY.md`](docs/NETWORK_REVIVAL_POLICY.md) — decentralized connectivity policy for the revival;
+- [`docs/NETWORK_REVIVAL_POLICY.md`](docs/NETWORK_REVIVAL_POLICY.md) — decentralized connectivity and discovery policy for the revival;
+- [`docs/PROJECT_CHECKPOINT_2026-09-14.md`](docs/PROJECT_CHECKPOINT_2026-09-14.md) — six-week pause checkpoint, frozen decisions, evidence hashes and exact resume sequence;
 - [`docs/UPSTREAM_BASELINE.md`](docs/UPSTREAM_BASELINE.md) — evidence identifying the strongest known Bitcoin Core upstream baseline candidate;
 - [`docs/RECONSTRUCTION_POLICY.md`](docs/RECONSTRUCTION_POLICY.md) — holder-protection and consensus-continuity rules.
 
@@ -77,4 +78,6 @@ AMLToken Revival is an independent preservation project. It is **not affiliated 
 
 ## Current status
 
-The repository is currently private while the original chain parameters, software behaviour and historical evidence are being reconstructed and verified. No public release or replacement network should be considered authoritative until the original chain identity and consensus behaviour have been reproduced and independently checked.
+The repository is currently private while the original chain parameters, software behaviour and historical evidence are being reconstructed and verified.
+
+The peer-control mechanism has been mapped and the decentralized revival networking policy is now frozen. The principal blocker is recovery or independent verification of the legitimate post-genesis AMLToken/ABTC chain. No public production network or replacement chain should be considered authoritative until historical continuity has been demonstrated.
