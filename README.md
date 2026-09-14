@@ -26,6 +26,16 @@ The project rule is simple:
 
 **Same genesis. Same historical ledger. Same ownership.**
 
+## AML Bitcoin, AMLToken and ABTC — important clarification
+
+The ticker **ABTC** is ambiguous and is also used by unrelated modern projects. AMLToken Revival concerns the **original native AMLToken/ABTC blockchain** recovered from preserved historical software and blockchain data. It is not an ERC-20 or BEP-20 replacement token.
+
+The project is independent of the former AML Bitcoin / AMLToken operators and NAC Foundation. It does not dispute or minimise the criminal proceedings connected with the original project's management, and it makes **no claim that ABTC currently has a liquid market price or active exchange market**.
+
+The legal history, ticker confusion and technical chain identity are explained separately here:
+
+**[AML Bitcoin, AMLToken and ABTC — Identity and Historical Context](docs/ABTC_IDENTITY_AND_CONTEXT.md)**
+
 ## Validated historical snapshot
 
 Current authenticated chain state:
@@ -158,6 +168,7 @@ Public addresses, transaction IDs, block hashes and non-private blockchain files
 
 The public evidence set currently includes:
 
+- [`docs/ABTC_IDENTITY_AND_CONTEXT.md`](docs/ABTC_IDENTITY_AND_CONTEXT.md) — clarification of AMLToken/ABTC chain identity, legal context, ticker confusion and unrelated modern ABTC tokens;
 - [`docs/OLD_WALLET_CONNECTION_GUIDE.md`](docs/OLD_WALLET_CONNECTION_GUIDE.md) — simple Windows/Linux/macOS instructions for old wallet holders who want to connect safely to the recovery nodes;
 - [`docs/CHAIN_IDENTITY.md`](docs/CHAIN_IDENTITY.md) — recovered chain identity and mainnet parameters;
 - [`docs/GENESIS_REPRODUCTION.md`](docs/GENESIS_REPRODUCTION.md) — deterministic reproduction of the original genesis;
@@ -200,6 +211,8 @@ If you still have an old wallet, start with the [simple connection guide](docs/O
 ## Independence
 
 AMLToken Revival is an independent preservation project. It is **not affiliated with, endorsed by, or operated by** the original AMLToken, AML Bitcoin, NAC Foundation, or their former operators.
+
+For legal-history and ticker-identity clarification, see [`docs/ABTC_IDENTITY_AND_CONTEXT.md`](docs/ABTC_IDENTITY_AND_CONTEXT.md).
 
 ## Release status
 
