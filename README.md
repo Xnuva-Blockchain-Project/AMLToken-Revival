@@ -255,3 +255,13 @@ See [`RELEASE_NOTES_2026-09-14.md`](RELEASE_NOTES_2026-09-14.md) for the preview
 ---
 
 **Preserve the evidence. Recover the history. Restore the network without rewriting ownership or reviving unverified marketing claims.**
+
+## Engineering Standards and Test Records
+
+This project's preservation, modernisation and release-qualification work is documented in the [Golden Standard Cryptocurrency Modernisation Handbook (GSH)](https://github.com/Xnuva-Blockchain-Project/Golden-Standard-Modernisation). The handbook is an engineering evidence register, **not** a declaration that a build, network or wallet is release-ready.
+
+- [AMLToken/ABTC precursor-chain preservation (currently in stasis) — history, checksums and qualification status](https://github.com/Xnuva-Blockchain-Project/Golden-Standard-Modernisation/blob/main/coins/AMLToken-Revival/README.md)
+- [AMLToken Revival historical recovery test register](https://github.com/Xnuva-Blockchain-Project/Golden-Standard-Modernisation/blob/main/coins/AMLToken-Revival/tests.md) — **in stasis**; no RandomX conversion or replacement-chain launch is authorised
+
+Tests and results are scoped to their own coin, exact source revision and environment. A PASS for another coin does not establish compatibility here. Follow the GSH's preservation, independent-verification and release-gating rules before any consensus, wallet or network change.
+
